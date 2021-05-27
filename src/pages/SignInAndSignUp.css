@@ -98,3 +98,12 @@ opacity: 1;
     display: flex;
     justify-content: space-between;
 }
+
+.General{
+    font-family: Roboto;
+    font-size: 15px;
+    color: #0A0102;
+    display: flex;
+    justify-content: flex-start;
+    width: 200px;
+}
