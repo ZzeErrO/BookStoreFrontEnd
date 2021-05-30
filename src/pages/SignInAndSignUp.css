@@ -107,3 +107,27 @@ opacity: 1;
     justify-content: flex-start;
     width: 200px;
 }
+
+@media screen and (max-width:500px){
+
+    .centerbody{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        top: 185px;
+        left: 320px;
+        width: 350px;
+        height: 391px;
+        border-radius: 21px;
+        opacity: 1;
+    }    
+
+#image{
+    display: none;
+}
+
+.belowImage{
+    display: none;
+}
+
+}

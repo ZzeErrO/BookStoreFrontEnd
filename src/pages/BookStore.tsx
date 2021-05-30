@@ -1,10 +1,140 @@
 import React, { Component } from 'react'
 
-export default class BookStore extends Component {
+import './BookStore.css'
+
+import Grid from '@material-ui/core/Grid';
+import Paper from '@material-ui/core/Paper';
+import InputBase from '@material-ui/core/InputBase';
+import SearchIcon from '@material-ui/icons/Search';
+import MenuBookSharpIcon from '@material-ui/icons/MenuBookSharp';
+import PersonOutlineOutlinedIcon from '@material-ui/icons/PersonOutlineOutlined';
+import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
+
+import { Redirect } from "react-router-dom";
+
+import Userservice from '../services/userservice';
+
+import book1 from '../assets/book1.png';
+import book2 from '../assets/book2.png';
+import book3 from '../assets/book3.png';
+import book4 from '../assets/book4.png';
+import book5 from '../assets/book5.png';
+import book6 from '../assets/book6.png';
+import book7 from '../assets/book7.png';
+
+
+const axios_service = new Userservice();
+
+interface IProps {
+}
+
+interface IState {
+    notes?: any,
+    redirect? : any
+}
+
+export default class BookStore extends Component<IProps, IState> {
+
+    constructor(props: any) {
+        super(props);
+        this.state = {
+            notes: [],
+            redirect: null
+        }
+
+    }
+
+    componentDidMount() {
+        this.GetData();
+    }
+
+    GetData = () => {
+        axios_service.Getdata().then((result) => {
+            console.log(result.data.books);
+            this.setState({ notes: result.data.books });
+            console.log(this.state.notes);
+            console.log(this.state.notes.bookName[0]);
+        }).catch(() => {
+
+        })
+    }
+
+    toCart = () => {
+        this.setState({redirect : "/bookStore/cart"});
+    }
+
     render() {
+
+        if (this.state.redirect) {
+
+            return <Redirect to={this.state.redirect} />
+        }
+
         return (
+
             <div>
-                Hello Users
+                <header>
+
+                    <MenuBookSharpIcon className="MenuBookSharpIcon" />
+                    <div className="Name">Bookstore</div>
+                    
+                    <div className = "inputbase">
+
+                    <div className = "searchIcon"><SearchIcon/></div>
+                    <InputBase
+                        placeholder="Search"
+                        inputProps={{ 'aria-label': 'search' }}
+                    />
+                    </div>
+    
+                    <div className = "PersonOutlineOutlinedIcon"><PersonOutlineOutlinedIcon/> <div className ="Style"> Person </div></div>
+                    <div className = "ShoppingCartIcon"><ShoppingCartIcon onClick = {this.toCart}/> <div className ="Style">Cart</div></div>
+
+                </header>
+                <div className="Body">
+                    <div className="Title">Books</div>
+
+
+                    <Grid item xs={12}>
+                        <Grid container justify="flex-start">
+                            {this.state.notes.slice(0).reverse().map((value: any) =>
+
+                                <Grid key={value.id} item >
+
+                                    <Paper className="paper">
+
+                                        <div>
+                                            <div className="img">
+                                                <img src={book1} alt="Book" />
+                                            </div>
+
+                                            <div className="Intro">
+
+                                                <div className="bookName">{value.bookName} </div>
+                                                <div className="by">by {value.authors}</div>
+                                                <div className="rating">4.5 <div className="number">({value.availableBooks})</div></div>
+                                                <div className="price">Rs.{value.price}</div>
+
+                                            </div>
+
+                                        </div>
+
+                                    </Paper>
+
+                                </Grid>
+
+                            )}
+                        </Grid>
+                    </Grid>
+
+
+                </div>
+
+                <footer>
+                    <div className = "text">
+                        Copyright 2020, BookStore Private Limited.All Rights Reserved
+                    </div>
+                </footer>
             </div>
         )
     }
