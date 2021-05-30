@@ -30,7 +30,8 @@ interface IProps {
 
 interface IState {
     notes?: any,
-    redirect? : any
+    redirect?: any,
+    openDropDown? : boolean
 }
 
 export default class BookStore extends Component<IProps, IState> {
@@ -39,7 +40,8 @@ export default class BookStore extends Component<IProps, IState> {
         super(props);
         this.state = {
             notes: [],
-            redirect: null
+            redirect: null,
+            openDropDown: false
         }
 
     }
@@ -59,8 +61,20 @@ export default class BookStore extends Component<IProps, IState> {
         })
     }
 
+    toWishList = () => {
+        this.setState({ redirect: "/bookStore/wishlist" });
+    }
+
     toCart = () => {
-        this.setState({redirect : "/bookStore/cart"});
+        this.setState({ redirect: "/bookStore/cart" });
+    }
+
+    opendropdown = () => {
+        this.setState({ openDropDown : true });
+    }
+
+    closedropdown = () => {
+        this.setState({ openDropDown : false });
     }
 
     render() {
@@ -77,18 +91,35 @@ export default class BookStore extends Component<IProps, IState> {
 
                     <MenuBookSharpIcon className="MenuBookSharpIcon" />
                     <div className="Name">Bookstore</div>
-                    
-                    <div className = "inputbase">
 
-                    <div className = "searchIcon"><SearchIcon/></div>
-                    <InputBase
-                        placeholder="Search"
-                        inputProps={{ 'aria-label': 'search' }}
-                    />
+                    <div className="inputbase">
+
+                        <div className="searchIcon"><SearchIcon /></div>
+                        <InputBase
+                            placeholder="Search"
+                            inputProps={{ 'aria-label': 'search' }}
+                        />
                     </div>
-    
-                    <div className = "PersonOutlineOutlinedIcon"><PersonOutlineOutlinedIcon/> <div className ="Style"> Person </div></div>
-                    <div className = "ShoppingCartIcon"><ShoppingCartIcon onClick = {this.toCart}/> <div className ="Style">Cart</div></div>
+
+                    <div className="PersonOutlineOutlinedIcon">
+                        {this.state.openDropDown ? 
+                        <div className = "dropdown">
+                            <PersonOutlineOutlinedIcon onClick={this.closedropdown}/>
+                            <form>
+                            <select>
+                                <option>Hello Prashik</option>
+                                <option onClick = {this.toWishList}>WishList</option>
+                            </select>
+                            </form>
+                        </div>
+                        :
+                        <div>
+                        <PersonOutlineOutlinedIcon onClick={this.opendropdown}/>
+                        <div className="Style"> Person </div>
+                        </div>
+                        }
+                    </div>
+                    <div className="ShoppingCartIcon"><ShoppingCartIcon onClick={this.toCart} /> <div className="Style">Cart</div></div>
 
                 </header>
                 <div className="Body">
@@ -131,7 +162,7 @@ export default class BookStore extends Component<IProps, IState> {
                 </div>
 
                 <footer>
-                    <div className = "text">
+                    <div className="text">
                         Copyright 2020, BookStore Private Limited.All Rights Reserved
                     </div>
                 </footer>

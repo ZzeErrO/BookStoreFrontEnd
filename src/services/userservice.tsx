@@ -27,6 +27,11 @@ class Userservice {
         return axiosservice.getMethod(`${baseUrl}Users`, configbook)
     }
 
+    Getcart = () => {
+        console.log(`${baseUrl}Cart`, configbook);
+        return axiosservice.getMethod(`${baseUrl}Cart`, configbook)
+    }
+
 }
 
 export default Userservice

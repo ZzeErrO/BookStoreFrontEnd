@@ -6,6 +6,7 @@ import { BrowserRouter, Route, Link , Switch, Redirect} from 'react-router-dom';
 import SignInSignUp from './pages/SignInAndSignUp';
 import BookStore from './pages/BookStore';
 import Cart from './pages/Cart';
+import WishList from './pages/Cart';
 
 function App() {
   //<Route path="*" component={() => "404 NOT FOUND"} />
@@ -16,6 +17,7 @@ function App() {
       <Route exact path= "/loginOrSignUp" component={SignInSignUp} />
       <Route exact path= "/bookStore" component={BookStore} />
       <Route exact path= "/bookStore/cart" component={Cart} />
+      <Route exact path= "/bookStore/wishlist" component={WishList} />
     </Switch>
   </BrowserRouter>
 

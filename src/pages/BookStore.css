@@ -214,3 +214,31 @@ opacity: 1;
     color: white;
     margin-left: 163px;
 }
+
+.dropdown{
+    display: flex;
+    flex-direction: column;
+}
+
+
+
+
+
+
+
+
+
+
+
+.row{
+    display: flex;
+}
+
+input{
+    width: 20px;
+}
+
+.DeleteIcon{
+
+    margin-left: 100px;
+}
