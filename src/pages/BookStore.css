@@ -58,7 +58,7 @@ width: 235px;
 height: 153px;
 }
 
-img{
+#image2{
 margin-left: 60px;
 margin-top: 10px;
 width: 109px;
@@ -70,7 +70,7 @@ opacity: 1;
 .paper{
 
     width: 235px;
-height: 240px;
+height: 265px;
 background: white 0% 0% no-repeat padding-box;
 border: 1px solid #E2E2E2;
 border-radius: 3px;
@@ -177,6 +177,10 @@ opacity: 1;
     margin-left: 10px;
 }
 
+.MuiButton-label{
+    font-size: 12px;
+}
+
 .PersonOutlineOutlinedIcon{
     display: flex;
     flex-direction: column;
@@ -219,6 +223,16 @@ opacity: 1;
 .dropdown{
     display: flex;
     flex-direction: column;
+}
+
+.bookbuttons{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.buttonsize{
+    width: 100px;
 }
 
 

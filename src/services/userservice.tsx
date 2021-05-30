@@ -32,6 +32,16 @@ class Userservice {
         return axiosservice.getMethod(`${baseUrl}Cart`, configbook)
     }
 
+    AddtoCart = (id : any) => {
+        console.log(`${baseUrl}Users/${id}/MoveToCart`, id, configbook);
+        return axiosservice.putMethod(`${baseUrl}Users/${id}/MoveToCart`, id, configbook)
+    }
+
+    AddtoWishList = (id : any) => {
+        console.log(`${baseUrl}Users/${id}/MoveToWishList`, id, configbook);
+        return axiosservice.putMethod(`${baseUrl}Users/${id}/MoveToWishList`, id, configbook)
+    }
+
 }
 
 export default Userservice

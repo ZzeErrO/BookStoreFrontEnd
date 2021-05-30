@@ -9,6 +9,7 @@ import SearchIcon from '@material-ui/icons/Search';
 import MenuBookSharpIcon from '@material-ui/icons/MenuBookSharp';
 import PersonOutlineOutlinedIcon from '@material-ui/icons/PersonOutlineOutlined';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
+import Button from '@material-ui/core/Button';
 
 import { Redirect } from "react-router-dom";
 
@@ -56,6 +57,24 @@ export default class BookStore extends Component<IProps, IState> {
             this.setState({ notes: result.data.books });
             console.log(this.state.notes);
             console.log(this.state.notes.bookName[0]);
+        }).catch(() => {
+
+        })
+    }
+
+    addtoCart = (value : any) => {
+        console.log();
+        axios_service.AddtoCart(value).then((result) => {
+            console.log(result.data);
+            
+        }).catch(() => {
+
+        })
+    }
+    
+    addtoWishList = (value : any) => {
+        axios_service.AddtoWishList(value).then((result) => {
+            console.log(result.data);
         }).catch(() => {
 
         })
@@ -136,7 +155,7 @@ export default class BookStore extends Component<IProps, IState> {
 
                                         <div>
                                             <div className="img">
-                                                <img src={book1} alt="Book" />
+                                                <img id = "image2" src={book1} alt="Book" />
                                             </div>
 
                                             <div className="Intro">
@@ -145,7 +164,20 @@ export default class BookStore extends Component<IProps, IState> {
                                                 <div className="by">by {value.authors}</div>
                                                 <div className="rating">4.5 <div className="number">({value.availableBooks})</div></div>
                                                 <div className="price">Rs.{value.price}</div>
+                                                <div className= "bookbuttons">
 
+                                                <div >
+                                                <Button className = "buttonsize" onClick = {() => this.addtoCart(value.id)} size = "small" variant="contained" color="secondary">
+                                                Add to Bag
+                                                </Button>
+                                                </div>
+                                                <div >
+                                                <Button className = "buttonsize" onClick = {() => this.addtoWishList(value.id)} size = "small" variant="contained">
+                                                WishList
+                                                </Button>
+                                                </div>
+
+                                                </div>
                                             </div>
 
                                         </div>
