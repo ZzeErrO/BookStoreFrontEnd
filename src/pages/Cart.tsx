@@ -130,7 +130,7 @@ export default class Cart extends Component<IProps, IState> {
                                             <div className="Intro">
 
                                                 <div className="price">Rs.{value.price}</div>
-                                                <div className="row">Quantity: <input></input></div>
+                                                <div className="row"> <div className= "quantity">Quantity: </div><input></input></div>
                                                 <div><button>Order</button> <DeleteOutlineOutlinedIcon className = "DeleteIcon"/> </div>
 
                                             </div>

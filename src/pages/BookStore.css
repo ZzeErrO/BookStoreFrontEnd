@@ -164,6 +164,7 @@ opacity: 1;
 
 .searchIcon{
 
+    margin-top: 4px;
     top: 24px;
 left: 348px;
 width: 13px;
@@ -235,10 +236,15 @@ opacity: 1;
 }
 
 input{
-    width: 20px;
+    margin-left: 5px;
+    height: 12px;
+    width: 25px;
 }
 
 .DeleteIcon{
-
     margin-left: 100px;
+}
+
+.quantity {
+    font: normal normal normal 14px/19px Roboto;
 }
