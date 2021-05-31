@@ -82,17 +82,20 @@ export default class Header extends Component<IProps, IState> {
                     <div className="PersonOutlineOutlinedIcon">
                         {this.state.openDropDown ?
                             <div className="dropdown">
-                                <PersonOutlineOutlinedIcon onClick={this.closedropdown} />
+                                <div className= "x"><PersonOutlineOutlinedIcon onClick={this.closedropdown} /></div>
+                                <div className="y">
                                 <Menu
                                     id="simple-menu"
                                     keepMounted
                                     open={this.state.openDropDown}
                                     onClose={this.closedropdown}
-                                >
+                                    >
                                     <MenuItem onClick={this.closedropdown}>Hello User!!</MenuItem>
                                     <MenuItem onClick={this.toWishList}>My WishList</MenuItem>
                                     <MenuItem onClick={this.closedropdown}>Logout</MenuItem>
+
                                 </Menu>
+                                </div>
                             </div>
                             :
                             <div>

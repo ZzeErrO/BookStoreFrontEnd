@@ -221,11 +221,6 @@ opacity: 1;
     margin-left: 163px;
 }
 
-.dropdown{
-    display: flex;
-    flex-direction: column;
-}
-
 .bookbuttons{
     display: flex;
     justify-content: space-between;
@@ -234,4 +229,16 @@ opacity: 1;
 
 .buttonsize{
     width: 100px;
+}
+
+
+
+
+
+.x{
+    position: relative;
+}
+
+.y{
+    position: absolute;
 }

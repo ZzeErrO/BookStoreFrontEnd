@@ -6,7 +6,7 @@ import { BrowserRouter, Route, Link , Switch, Redirect} from 'react-router-dom';
 import SignInSignUp from './pages/SignInSignUp/SignInAndSignUp';
 import BookStore from './pages/BookStore/BookStore';
 import Cart from './pages/Cart/Cart';
-import WishList from './pages/Cart/Cart';
+import WishList from './pages/WishList/WishList';
 import NOTFOUND from './components/NOTFOUND/Notfound';
 
 function App() {

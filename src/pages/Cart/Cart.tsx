@@ -12,6 +12,10 @@ import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import DeleteIcon from '@material-ui/icons/Delete';
 import DeleteOutlineOutlinedIcon from '@material-ui/icons/DeleteOutlineOutlined';
 import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField';
+import Checkbox from '@material-ui/core/Checkbox';
+import FormGroup from '@material-ui/core/FormGroup';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
 
 import { Redirect } from "react-router-dom";
 
@@ -30,7 +34,17 @@ interface IProps {
 interface IState {
     notes?: any,
     redirect?: any,
-    openDropDown?: boolean
+    openDropDown?: boolean,
+    openDetails?: boolean,
+    openDetailsSummary?: boolean,
+    FullName?: string,
+    Email?: string,
+    Password?: string,
+    Number?: string,
+    FullNameError?: boolean,
+    EmailError?: boolean,
+    PasswordError?: boolean,
+    NumberError?: boolean
 }
 
 export default class Cart extends Component<IProps, IState> {
@@ -40,9 +54,25 @@ export default class Cart extends Component<IProps, IState> {
         this.state = {
             notes: [],
             redirect: null,
-            openDropDown: false
+            openDropDown: false,
+            openDetails: false,
+            openDetailsSummary: false,
+            FullName: '',
+            Email: '',
+            Password: '',
+            Number: '',
+            FullNameError: false,
+            EmailError: false,
+            PasswordError: false,
+            NumberError: false
         }
 
+    }
+
+    change = (e: any) => {
+
+        console.log(e.target.value);
+        this.setState({ Email: e.target.value });
     }
 
     componentDidMount() {
@@ -64,6 +94,14 @@ export default class Cart extends Component<IProps, IState> {
         this.setState({ redirect: "/cart" });
     }
 
+    openDetailsforCustomer = () => {
+        this.setState({ openDetails: true });
+    }
+
+    openDetailsforSummary = () => {
+        this.setState({ openDetailsSummary: true });
+    }
+
     render() {
 
         if (this.state.redirect) {
@@ -74,41 +112,241 @@ export default class Cart extends Component<IProps, IState> {
         return (
 
             <div>
-                <Header/>
+                <Header />
 
-                <div className="Body">
-                    <div className="Title"><a href ="http://localhost:3000/bookStore">Home</a>/Cart</div>
+                <div className="Body2">
 
-                    <div className = "Cart">
-                        <div className = "heading">My Cart</div>
-                        
+                    <div className="Title"><a href="http://localhost:3000/bookStore">Home</a>/Cart</div>
+
+                    <div className="Cart">
+                        <div className="heading">My Cart</div>
+
                         {this.state.notes.slice(0).reverse().map((value: any) =>
 
-                        <div key = {value.id} className= "cartitems">
+                            <div key={value.id} className="cartitems">
 
-                        <img id = "image2" src={book1} alt="Book" />
+                                <img id="image2" src={book1} alt="Book" />
 
-                        <div className= "Paper2">
-                            <div>BookName</div>
-                            <div className="price">Rs.{value.price}</div>
+                                <div className="Paper2">
 
-                        </div>
+                                    <div>BookName</div>
+                                    <div className="price">Rs.{value.price}</div>
+                                    <label>Quantity :</label>
+                                    <input type="number" id="quantity" name="quantity" min="1" max="99"></input>
 
-                        <div className = "PlaceOrder">
-                        <Button className = "buttonsize" size = "small" color="primary" variant="contained">
-                            Place Order
-                        </Button>
-                        </div>
+                                </div>
 
-                        </div>
+                                {this.state.openDetails ?
+
+                                    <div></div>
+
+                                    :
+
+                                    <div className="PlaceOrder">
+                                        <Button className="buttonsize" onClick={this.openDetailsforCustomer} size="small" color="primary" variant="contained">
+                                            Place Order
+                                    </Button>
+                                    </div>
+                                }
+                            </div>
 
                         )}
                     </div>
 
+                    {this.state.openDetails ?
 
+                        <div className="openDetails">
+                            <div className="left"><strong>Customer Details</strong></div>
+                            <div className="takeinput">
+                                <div className="giveinput">
+                                    <div className="a">
+                                        <TextField
+                                            error={this.state.NumberError}
+                                            size="small"
+                                            label="Name"
+                                            type="text"
+                                            name="text"
+                                            variant="outlined"
+                                            onChange={e => this.change(e)}
+                                            helperText={this.state.NumberError ? "Enter Phone Number" : ''}
+                                        />
+                                    </div>
+                                    <div className="a">
+                                        <TextField
+                                            error={this.state.NumberError}
+                                            size="small"
+                                            label="Phone Number"
+                                            type="Number"
+                                            name="Number"
+                                            variant="outlined"
+                                            onChange={e => this.change(e)}
+                                            helperText={this.state.NumberError ? "Enter Phone Number" : ''}
+                                        />
+                                    </div>
+                                </div>
+                                <div className="giveinput">
+                                    <div className="a">
+                                        <TextField
+                                            error={this.state.NumberError}
+                                            size="small"
+                                            label="Pin Code"
+                                            type="text"
+                                            name="text"
+                                            variant="outlined"
+                                            onChange={e => this.change(e)}
+                                            helperText={this.state.NumberError ? "Enter Phone Number" : ''}
+                                        />
+                                    </div>
+                                    <div className="a">
+                                        <TextField
+                                            error={this.state.NumberError}
+                                            size="small"
+                                            label="Locality"
+                                            type="text"
+                                            name="text"
+                                            variant="outlined"
+                                            onChange={e => this.change(e)}
+                                            helperText={this.state.NumberError ? "Enter Phone Number" : ''}
+                                        />
+                                    </div>
+                                </div>
+                                <div className="b">
+                                    <TextField
+                                        error={this.state.NumberError}
+                                        label="Address"
+                                        type="text"
+                                        name="text"
+                                        variant="outlined"
+                                        onChange={e => this.change(e)}
+                                        helperText={this.state.NumberError ? "Enter Phone Number" : ''}
+                                    />
+                                </div>
+                                <div className="giveinput">
+                                    <div className="a">
+                                        <TextField
+                                            error={this.state.NumberError}
+                                            size="small"
+                                            label="City/Town"
+                                            type="text"
+                                            name="text"
+                                            variant="outlined"
+                                            onChange={e => this.change(e)}
+                                            helperText={this.state.NumberError ? "Enter Phone Number" : ''}
+                                        />
+                                    </div>
+                                    <div className="a">
+                                        <TextField
+                                            error={this.state.NumberError}
+                                            size="small"
+                                            label="Landmark"
+                                            type="text"
+                                            name="text"
+                                            variant="outlined"
+                                            onChange={e => this.change(e)}
+                                            helperText={this.state.NumberError ? "Enter Phone Number" : ''}
+                                        />
+                                    </div>
+                                </div>
+
+                                <div className="left">Type</div>
+
+                                <div className="left">
+
+                                    <FormControlLabel
+                                        control={
+                                            <Checkbox
+
+                                                name="checkedB"
+                                                color="primary"
+                                            />
+                                        }
+                                        label="Home"
+                                    />
+
+                                    <FormControlLabel
+                                        control={
+                                            <Checkbox
+
+                                                name="checkedB"
+                                                color="primary"
+                                            />
+                                        }
+                                        label="Work"
+                                    />
+
+                                    <FormControlLabel
+                                        control={
+                                            <Checkbox
+
+                                                name="checkedB"
+                                                color="primary"
+                                            />
+                                        }
+                                        label="Other"
+                                    />
+
+                                    {this.state.openDetailsSummary ?
+
+                                        <div></div>
+
+                                        :
+
+                                        <div className="PlaceOrder">
+                                            <Button className="buttonsize" onClick={this.openDetailsforSummary} size="small" color="primary" variant="contained">
+                                                Place Order
+                                            </Button>
+                                        </div>
+                                    }
+
+                                </div>
+
+                            </div>
+                        </div>
+
+                        :
+                        <div className="Details">
+                            Customer Details
+                        </div>
+                    }
+
+                    {this.state.openDetailsSummary ?
+
+
+                        <div className="Cart">
+                            <div className="heading">My Cart</div>
+
+                            {this.state.notes.slice(0).reverse().map((value: any) =>
+
+                                <div key={value.id} className="cartitems">
+
+                                    <img id="image2" src={book1} alt="Book" />
+
+                                    <div className="Paper2">
+
+                                        <div>BookName</div>
+                                        <div className="price">Rs.{value.price}</div>
+                                    </div>
+
+                                    
+                                </div>
+
+                            )}
+                            <div className="Place">
+                            <Button className="buttonsize" onClick={this.openDetailsforSummary} size="small" color="primary" variant="contained">
+                            Checkout
+                            </Button>
+                            </div>
+                        </div>
+                        :
+
+                        <div className="Details">
+                            Order Summary
+                        </div>
+
+                    }
                 </div>
 
-                <Footer/>
+                <Footer />
 
             </div>
         )

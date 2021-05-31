@@ -21,7 +21,7 @@ input{
     width: 750px;
     height: 200px;
     padding: 15px;
-    border: 1px solid black;
+    border: 1px solid #cfcfcf;
 }
 
 .heading{
@@ -41,4 +41,68 @@ input{
 .PlaceOrder{
     margin-top: auto;
     margin-left: auto;
+}
+
+#quantity{
+    width: 30px;
+}
+
+.Details{
+    width: 750px;
+    height: 20px;
+    padding: 15px;
+    border: 1px solid #cfcfcf;
+}
+
+.openDetails{
+    width: 730px;
+    height: 300px;
+    padding: 25px;
+    border: 1px solid #cfcfcf;
+    display: flex;
+    flex-direction: column;
+}
+
+
+.Body2{
+    top: 0px;
+left: 0px;
+height: 1216px;
+background: #FFFFFF 0% 0% no-repeat padding-box;
+opacity: 1;
+margin-left: 174px;
+display: flex;
+flex-direction: column;
+}
+
+.takeinput{
+    display: flex;
+    flex-direction: column;
+}
+
+.giveinput{
+    display: flex;
+    justify-content: space-around;
+    margin-right: 132px;
+}
+
+.a{
+    height: 50px;
+}
+
+
+
+.left{
+    margin-left: 50px;
+    display: flex;
+    flex-direction: row;
+}
+
+.b{
+    margin-left: 30px;
+    padding: 10px;
+}
+
+.Place{
+    margin-left: 500px;
 }
