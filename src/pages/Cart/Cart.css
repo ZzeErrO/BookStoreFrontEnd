@@ -1,0 +1,44 @@
+
+.row{
+    display: flex;
+}
+
+input{
+    margin-left: 5px;
+    height: 12px;
+    width: 25px;
+}
+
+.DeleteIcon{
+    margin-left: 100px;
+}
+
+.quantity {
+    font: normal normal normal 14px/19px Roboto;
+}
+
+.Cart{
+    width: 750px;
+    height: 200px;
+    padding: 15px;
+    border: 1px solid black;
+}
+
+.heading{
+    font-size: 20px;
+    font-family: revert;
+}
+
+.Paper2{
+    width: 100px;
+    margin-left: 90px;
+}
+
+.cartitems{
+    display: flex;
+}
+
+.PlaceOrder{
+    margin-top: auto;
+    margin-left: auto;
+}

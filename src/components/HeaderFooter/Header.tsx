@@ -8,6 +8,8 @@ import MenuBookSharpIcon from '@material-ui/icons/MenuBookSharp';
 import PersonOutlineOutlinedIcon from '@material-ui/icons/PersonOutlineOutlined';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import Button from '@material-ui/core/Button';
+import Menu from '@material-ui/core/Menu';
+import MenuItem from '@material-ui/core/MenuItem';
 
 import { Redirect } from "react-router-dom";
 
@@ -24,7 +26,7 @@ interface IProps {
 interface IState {
     notes?: any,
     redirect?: any,
-    openDropDown? : boolean
+    openDropDown?: boolean
 }
 
 export default class Header extends Component<IProps, IState> {
@@ -39,19 +41,19 @@ export default class Header extends Component<IProps, IState> {
     }
 
     toWishList = () => {
-        this.setState({ redirect: "/bookStore/wishlist" });
+        this.setState({ redirect: "/wishlist" });
     }
 
     toCart = () => {
-        this.setState({ redirect: "/bookStore/cart" });
+        this.setState({ redirect: "/cart" });
     }
 
     opendropdown = () => {
-        this.setState({ openDropDown : true });
+        this.setState({ openDropDown: true });
     }
 
     closedropdown = () => {
-        this.setState({ openDropDown : false });
+        this.setState({ openDropDown: false });
     }
 
     render() {
@@ -81,12 +83,16 @@ export default class Header extends Component<IProps, IState> {
                         {this.state.openDropDown ?
                             <div className="dropdown">
                                 <PersonOutlineOutlinedIcon onClick={this.closedropdown} />
-                                <form>
-                                    <select>
-                                        <option>Hello Prashik</option>
-                                        <option onClick={this.toWishList}>WishList</option>
-                                    </select>
-                                </form>
+                                <Menu
+                                    id="simple-menu"
+                                    keepMounted
+                                    open={this.state.openDropDown}
+                                    onClose={this.closedropdown}
+                                >
+                                    <MenuItem onClick={this.closedropdown}>Hello User!!</MenuItem>
+                                    <MenuItem onClick={this.toWishList}>My WishList</MenuItem>
+                                    <MenuItem onClick={this.closedropdown}>Logout</MenuItem>
+                                </Menu>
                             </div>
                             :
                             <div>

@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
 
-export default class WishList extends Component {
+export default class Notfound extends Component {
     render() {
         return (
             <div>
-                Hello to Wish List
+                <h1>404 NOT FOUND</h1>
             </div>
         )
     }

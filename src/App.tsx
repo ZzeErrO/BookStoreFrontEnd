@@ -3,21 +3,23 @@ import logo from './logo.svg';
 import './App.css';
 
 import { BrowserRouter, Route, Link , Switch, Redirect} from 'react-router-dom';
-import SignInSignUp from './pages/SignInAndSignUp';
-import BookStore from './pages/BookStore';
-import Cart from './pages/Cart';
-import WishList from './pages/Cart';
+import SignInSignUp from './pages/SignInSignUp/SignInAndSignUp';
+import BookStore from './pages/BookStore/BookStore';
+import Cart from './pages/Cart/Cart';
+import WishList from './pages/Cart/Cart';
+import NOTFOUND from './components/NOTFOUND/Notfound';
 
 function App() {
-  //<Route path="*" component={() => "404 NOT FOUND"} />
+
   return (
 
     <BrowserRouter>
     <Switch>
       <Route exact path= "/loginOrSignUp" component={SignInSignUp} />
       <Route exact path= "/bookStore" component={BookStore} />
-      <Route exact path= "/bookStore/cart" component={Cart} />
-      <Route exact path= "/bookStore/wishlist" component={WishList} />
+      <Route exact path= "/cart" component={Cart} />
+      <Route exact path= "/wishlist" component={WishList} />
+      <Route path="*" component={NOTFOUND} />
     </Switch>
   </BrowserRouter>
 

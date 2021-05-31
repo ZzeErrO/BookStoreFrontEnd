@@ -13,9 +13,9 @@ import Button from '@material-ui/core/Button';
 
 import { Redirect } from "react-router-dom";
 
-import Userservice from '../services/userservice';
+import Userservice from '../../services/userservice';
 
-import book1 from '../assets/book1.png';
+import book1 from '../../assets/book1.png';
 import book2 from '../assets/book2.png';
 import book3 from '../assets/book3.png';
 import book4 from '../assets/book4.png';
@@ -23,8 +23,8 @@ import book5 from '../assets/book5.png';
 import book6 from '../assets/book6.png';
 import book7 from '../assets/book7.png';
 
-import Header from '../components/HeaderFooter/Header';
-import Footer from '../components/HeaderFooter/Footer' 
+import Header from '../../components/HeaderFooter/Header';
+import Footer from '../../components/HeaderFooter/Footer';
 
 const axios_service = new Userservice();
 
@@ -83,11 +83,11 @@ export default class BookStore extends Component<IProps, IState> {
     }
 
     toWishList = () => {
-        this.setState({ redirect: "/bookStore/wishlist" });
+        this.setState({ redirect: "/wishlist" });
     }
 
     toCart = () => {
-        this.setState({ redirect: "/bookStore/cart" });
+        this.setState({ redirect: "/cart" });
     }
 
     opendropdown = () => {

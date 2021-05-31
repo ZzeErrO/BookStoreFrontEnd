@@ -235,31 +235,3 @@ opacity: 1;
 .buttonsize{
     width: 100px;
 }
-
-
-
-
-
-
-
-
-
-
-
-.row{
-    display: flex;
-}
-
-input{
-    margin-left: 5px;
-    height: 12px;
-    width: 25px;
-}
-
-.DeleteIcon{
-    margin-left: 100px;
-}
-
-.quantity {
-    font: normal normal normal 14px/19px Roboto;
-}

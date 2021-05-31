@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import logo from '../assets/component.png';
+import logo from '../../assets/component.png';
 import './SignInAndSignUp.css'
 
 import Button from '@material-ui/core/Button';
@@ -7,7 +7,7 @@ import TextField from '@material-ui/core/TextField';
 
 import { Redirect } from "react-router-dom";
 
-import Userservice from '../services/userservice';
+import Userservice from '../../services/userservice';
 import { isNullishCoalesce } from 'typescript';
 
 const axios_service = new Userservice();
