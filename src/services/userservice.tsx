@@ -32,6 +32,11 @@ class Userservice {
         return axiosservice.getMethod(`${baseUrl}Cart`, configbook)
     }
 
+    Getwishlist = () => {
+        console.log(`${baseUrl}WishList`, configbook);
+        return axiosservice.getMethod(`${baseUrl}WishList`, configbook)
+    }
+
     AddtoCart = (id : any) => {
         console.log(`${baseUrl}Users/${id}/MoveToCart`, id, configbook);
         return axiosservice.putMethod(`${baseUrl}Users/${id}/MoveToCart`, id, configbook)

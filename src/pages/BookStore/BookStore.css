@@ -219,6 +219,10 @@ opacity: 1;
 .text{
     color: white;
     margin-left: 163px;
+    display: flex;
+    justify-content: center;
+    margin-top: 2px;
+    margin-right: 200px;
 }
 
 .bookbuttons{

@@ -10,7 +10,7 @@ input{
 }
 
 .DeleteIcon{
-    margin-left: 100px;
+    margin-left: 180px;
 }
 
 .quantity {
@@ -19,7 +19,6 @@ input{
 
 .Cart{
     width: 750px;
-    height: 200px;
     padding: 15px;
     border: 1px solid #cfcfcf;
 }
@@ -67,7 +66,7 @@ input{
 .Body2{
     top: 0px;
 left: 0px;
-height: 1216px;
+min-height: 1216px;
 background: #FFFFFF 0% 0% no-repeat padding-box;
 opacity: 1;
 margin-left: 174px;

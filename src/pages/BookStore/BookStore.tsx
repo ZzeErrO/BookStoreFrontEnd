@@ -65,7 +65,7 @@ export default class BookStore extends Component<IProps, IState> {
     }
 
     addtoCart = (value : any) => {
-        console.log();
+        console.log(value);
         axios_service.AddtoCart(value).then((result) => {
             console.log(result.data);
             
