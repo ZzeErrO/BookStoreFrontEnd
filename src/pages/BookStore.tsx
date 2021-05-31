@@ -23,6 +23,8 @@ import book5 from '../assets/book5.png';
 import book6 from '../assets/book6.png';
 import book7 from '../assets/book7.png';
 
+import Header from '../components/HeaderFooter/Header';
+import Footer from '../components/HeaderFooter/Footer' 
 
 const axios_service = new Userservice();
 
@@ -106,41 +108,7 @@ export default class BookStore extends Component<IProps, IState> {
         return (
 
             <div>
-                <header>
-
-                    <MenuBookSharpIcon className="MenuBookSharpIcon" />
-                    <div className="Name">Bookstore</div>
-
-                    <div className="inputbase">
-
-                        <div className="searchIcon"><SearchIcon /></div>
-                        <InputBase
-                            placeholder="Search"
-                            inputProps={{ 'aria-label': 'search' }}
-                        />
-                    </div>
-
-                    <div className="PersonOutlineOutlinedIcon">
-                        {this.state.openDropDown ? 
-                        <div className = "dropdown">
-                            <PersonOutlineOutlinedIcon onClick={this.closedropdown}/>
-                            <form>
-                            <select>
-                                <option>Hello Prashik</option>
-                                <option onClick = {this.toWishList}>WishList</option>
-                            </select>
-                            </form>
-                        </div>
-                        :
-                        <div>
-                        <PersonOutlineOutlinedIcon onClick={this.opendropdown}/>
-                        <div className="Style"> Person </div>
-                        </div>
-                        }
-                    </div>
-                    <div className="ShoppingCartIcon"><ShoppingCartIcon onClick={this.toCart} /> <div className="Style">Cart</div></div>
-
-                </header>
+                <Header/>
                 <div className="Body">
                     <div className="Title">Books</div>
 
@@ -193,11 +161,7 @@ export default class BookStore extends Component<IProps, IState> {
 
                 </div>
 
-                <footer>
-                    <div className="text">
-                        Copyright 2020, BookStore Private Limited.All Rights Reserved
-                    </div>
-                </footer>
+                <Footer/>
             </div>
         )
     }
