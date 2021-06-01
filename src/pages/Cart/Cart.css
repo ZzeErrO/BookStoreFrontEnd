@@ -18,8 +18,8 @@ input{
 }
 
 .Cart{
-    width: 750px;
-    padding: 15px;
+    width: 62%;
+    padding: 25px;
     border: 1px solid #cfcfcf;
 }
 
@@ -31,15 +31,19 @@ input{
 .Paper2{
     width: 100px;
     margin-left: 90px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
 }
 
 .cartitems{
     display: flex;
+
 }
 
 .PlaceOrder{
-    margin-top: auto;
-    margin-left: auto;
+    display: flex;
+    justify-content: flex-end;
 }
 
 #quantity{
@@ -47,14 +51,14 @@ input{
 }
 
 .Details{
-    width: 750px;
+    width: 64%;
     height: 20px;
     padding: 15px;
     border: 1px solid #cfcfcf;
 }
 
 .openDetails{
-    width: 730px;
+    width: 62%;
     height: 300px;
     padding: 25px;
     border: 1px solid #cfcfcf;
@@ -64,12 +68,9 @@ input{
 
 
 .Body2{
-    top: 0px;
-left: 0px;
-min-height: 1216px;
 background: #FFFFFF 0% 0% no-repeat padding-box;
 opacity: 1;
-margin-left: 174px;
+padding-left: 10%;
 display: flex;
 flex-direction: column;
 }
@@ -89,19 +90,32 @@ flex-direction: column;
     height: 50px;
 }
 
-
+.space1{
+    height: 20px;
+}
 
 .left{
     margin-left: 50px;
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
 }
 
 .b{
-    margin-left: 30px;
+    margin-left: 37px;
     padding: 10px;
 }
 
 .Place{
-    margin-left: 500px;
+    display: flex;
+    justify-content: flex-end;
+    height: 30px;
 }
+
+#image2{
+    margin-top: 10px;
+    width: 109px;
+    height: 135px;
+    background: transparent 0% 0% no-repeat padding-box;
+    opacity: 1;
+    }

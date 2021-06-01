@@ -23,8 +23,8 @@ import book5 from '../assets/book5.png';
 import book6 from '../assets/book6.png';
 import book7 from '../assets/book7.png';
 
-import Header from '../../components/HeaderFooter/Header';
-import Footer from '../../components/HeaderFooter/Footer';
+import Header from '../../components/Header/Header'
+import Footer from '../../components/Footer/Footer'
 
 const axios_service = new Userservice();
 
@@ -34,7 +34,8 @@ interface IProps {
 interface IState {
     notes?: any,
     redirect?: any,
-    openDropDown? : boolean
+    openDropDown? : boolean,
+    openbutton? : boolean
 }
 
 export default class BookStore extends Component<IProps, IState> {
@@ -44,7 +45,8 @@ export default class BookStore extends Component<IProps, IState> {
         this.state = {
             notes: [],
             redirect: null,
-            openDropDown: false
+            openDropDown: false,
+            openbutton: false
         }
 
     }
@@ -65,6 +67,7 @@ export default class BookStore extends Component<IProps, IState> {
     }
 
     addtoCart = (value : any) => {
+        this.setState({openbutton : true});
         console.log(value);
         axios_service.AddtoCart(value).then((result) => {
             console.log(result.data);
@@ -132,8 +135,20 @@ export default class BookStore extends Component<IProps, IState> {
                                                 <div className="by">by {value.authors}</div>
                                                 <div className="rating">4.5 <div className="number">({value.availableBooks})</div></div>
                                                 <div className="price">Rs.{value.price}</div>
-                                                <div className= "bookbuttons">
 
+                                                { this.state.openbutton ? 
+
+                                                <div className= "bookbuttons2">
+
+                                                <Button className = "buttonsize" onClick = {() => this.addtoCart(value.id)} size = "small" variant="contained" color="primary">
+                                                Added to Bag
+                                                </Button>
+
+                                                </div>
+
+                                                :
+
+                                                <div className= "bookbuttons">
                                                 <div >
                                                 <Button className = "buttonsize" onClick = {() => this.addtoCart(value.id)} size = "small" variant="contained" color="secondary">
                                                 Add to Bag
@@ -144,8 +159,10 @@ export default class BookStore extends Component<IProps, IState> {
                                                 WishList
                                                 </Button>
                                                 </div>
-
                                                 </div>
+
+                                                }
+
                                             </div>
 
                                         </div>

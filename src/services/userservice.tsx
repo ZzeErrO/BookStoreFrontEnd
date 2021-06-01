@@ -47,6 +47,11 @@ class Userservice {
         return axiosservice.putMethod(`${baseUrl}Users/${id}/MoveToWishList`, id, configbook)
     }
 
+    Order = (id : any, quantity : any) => {
+        console.log(`${baseUrl}Order/${id}/${quantity}`, id, configbook);
+        return axiosservice.putMethod(`https://localhost:44368/Order/${id}/${quantity}`, id, configbook)
+    }
+
 }
 
 export default Userservice

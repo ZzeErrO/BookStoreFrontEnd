@@ -21,8 +21,8 @@ import { Redirect } from "react-router-dom";
 
 import Userservice from '../../services/userservice';
 
-import Header from '../../components/HeaderFooter/Header';
-import Footer from '../../components/HeaderFooter/Footer';
+import Header from '../../components/Header/Header'
+import Footer from '../../components/Footer/Footer'
 
 import book1 from '../../assets/book1.png';
 
@@ -90,6 +90,14 @@ export default class Cart extends Component<IProps, IState> {
         })
     }
 
+    orderItems = (id : any, quantity : any) => {
+        axios_service.Order(id, quantity).then((result) => {
+            console.log(result.data);
+        }).catch(() => {
+
+        })
+    }
+
     toCart = () => {
         this.setState({ redirect: "/cart" });
     }
@@ -136,27 +144,30 @@ export default class Cart extends Component<IProps, IState> {
 
                                 </div>
 
-                                {this.state.openDetails ?
-
-                                    <div></div>
-
-                                    :
-
-                                    <div className="PlaceOrder">
-                                        <Button className="buttonsize" onClick={this.openDetailsforCustomer} size="small" color="primary" variant="contained">
-                                            Place Order
-                                    </Button>
-                                    </div>
-                                }
                             </div>
 
                         )}
+
+                        {this.state.openDetails ?
+
+                            <div></div>
+
+                            :
+
+                            <div className="PlaceOrder">
+                                <Button className="buttonsize" onClick={this.openDetailsforCustomer} size="small" color="primary" variant="contained">
+                                    Place Order
+                                </Button>
+                            </div>
+                        }
                     </div>
+
+                    <div className="space1"></div>
 
                     {this.state.openDetails ?
 
                         <div className="openDetails">
-                            <div className="left"><strong>Customer Details</strong></div>
+                            <div className="heading">Customer Details</div>
                             <div className="takeinput">
                                 <div className="giveinput">
                                     <div className="a">
@@ -293,7 +304,7 @@ export default class Cart extends Component<IProps, IState> {
 
                                         <div className="PlaceOrder">
                                             <Button className="buttonsize" onClick={this.openDetailsforSummary} size="small" color="primary" variant="contained">
-                                                Place Order
+                                                Continue
                                             </Button>
                                         </div>
                                     }
@@ -308,6 +319,8 @@ export default class Cart extends Component<IProps, IState> {
                             Customer Details
                         </div>
                     }
+
+                    <div className="space1"></div>
 
                     {this.state.openDetailsSummary ?
 
@@ -327,15 +340,14 @@ export default class Cart extends Component<IProps, IState> {
                                         <div className="price">Rs.{value.price}</div>
                                     </div>
 
-                                    
+                                    <div className="Place">
+                                        <Button className="buttonsize" onClick={() => this.orderItems(value.bookId, value.quantity)} size="small" color="primary" variant="contained">
+                                            Checkout
+                                        </Button>
+                                    </div>
                                 </div>
-
                             )}
-                            <div className="Place">
-                            <Button className="buttonsize" onClick={this.openDetailsforSummary} size="small" color="primary" variant="contained">
-                            Checkout
-                            </Button>
-                            </div>
+
                         </div>
                         :
 
@@ -345,7 +357,7 @@ export default class Cart extends Component<IProps, IState> {
 
                     }
                 </div>
-
+                <div className="space1"></div>
                 <Footer />
 
             </div>

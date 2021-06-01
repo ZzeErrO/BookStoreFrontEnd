@@ -10,6 +10,7 @@ import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import Button from '@material-ui/core/Button';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
+import Badge from '@material-ui/core/Badge';
 
 import { Redirect } from "react-router-dom";
 
@@ -26,7 +27,7 @@ interface IProps {
 interface IState {
     notes?: any,
     redirect?: any,
-    openDropDown?: boolean
+    openDropDown: boolean
 }
 
 export default class Header extends Component<IProps, IState> {
@@ -38,6 +39,21 @@ export default class Header extends Component<IProps, IState> {
             openDropDown: false
         }
 
+    }
+
+    componentDidMount() {
+        this.GetCart();
+    }
+
+    GetCart = () => {
+        axios_service.Getcart().then((result) => {
+            console.log(result.data.book);
+            this.setState({ notes: result.data.book });
+            console.log(this.state.notes);
+            console.log(this.state.notes.bookName[0]);
+        }).catch(() => {
+
+        })
     }
 
     toWishList = () => {
@@ -80,9 +96,9 @@ export default class Header extends Component<IProps, IState> {
                     </div>
 
                     <div className="PersonOutlineOutlinedIcon">
-                        {this.state.openDropDown ?
+                        {/* {this.state.openDropDown ? */}
                             <div className="dropdown">
-                                <div className= "x"><PersonOutlineOutlinedIcon onClick={this.closedropdown} /></div>
+                                <div className= "x"><PersonOutlineOutlinedIcon onClick={this.opendropdown} /></div>
                                 <div className="y">
                                 <Menu
                                     id="simple-menu"
@@ -97,14 +113,21 @@ export default class Header extends Component<IProps, IState> {
                                 </Menu>
                                 </div>
                             </div>
-                            :
-                            <div>
-                                <PersonOutlineOutlinedIcon onClick={this.opendropdown} />
-                                <div className="Style"> Person </div>
-                            </div>
-                        }
+                            {/* // :
+                            // <div>
+                            //     <PersonOutlineOutlinedIcon onClick={this.opendropdown} />
+                            //     <div className="Style"> Person </div>
+                            // </div>
+                        //} */}
                     </div>
-                    <div className="ShoppingCartIcon"><ShoppingCartIcon onClick={this.toCart} /> <div className="Style">Cart</div></div>
+                    <div className="ShoppingCartIcon">
+                        <Badge badgeContent={this.state.notes.length} >
+
+                            <ShoppingCartIcon onClick={this.toCart} /> 
+
+                        </Badge>
+
+                        <div className="Style">Cart</div></div>
 
                 </header>
             </div>

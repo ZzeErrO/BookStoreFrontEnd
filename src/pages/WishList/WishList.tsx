@@ -11,8 +11,8 @@ import { Redirect } from "react-router-dom";
 
 import Userservice from '../../services/userservice';
 
-import Header from '../../components/HeaderFooter/Header';
-import Footer from '../../components/HeaderFooter/Footer';
+import Header from '../../components/Header/Header';
+import Footer from '../../components/Footer/Footer';
 
 import book1 from '../../assets/book1.png';
 
