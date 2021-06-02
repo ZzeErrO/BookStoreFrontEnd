@@ -57,39 +57,43 @@ export default class BookStore extends Component<IProps, IState> {
 
     GetData = () => {
         axios_service.Getdata().then((result) => {
-            console.log(result.data.books);
-            this.setState({ notes: result.data.books });
+            //console.log(result.data.books);
+            //this.setState({ notes: result.data.books });
 
-            this.setState({notes : this.state.notes.map((obj : object)=> ( obj = { ...obj, active: false } ))});
+            this.setState({notes : result.data.books.map((obj : object)=> ( obj = { ...obj, active: false } ))});
 
-            console.log(this.state.notes);
+            //console.log(this.state.notes);
             
-            console.log(this.state.notes.bookName[0]);
-        }).catch(() => {
-
+            //console.log(this.state.notes.bookName[0]);
+        }).catch((ex) => {
+            console.log(ex);
         })
     }
 
-    addtoCart = (value : any) => {
+    addtoCart = (value : any, index : any) => {
+
+        let findIndex = this.state.notes.findIndex((element : any) => element.id == value);
+
+        console.log(findIndex);
+
+         let newArray = [...this.state.notes]
+
+         newArray[findIndex] = {...newArray[findIndex], active : true}
+
+         console.log(newArray[findIndex]);
+
+         this.setState({notes: newArray});
 
 
-        this.setState({ notes : this.state.notes.forEach((element : any) => {
-            if(value == element.id)
-            {
-                element.active = true
-            }
-        })
-
-    })
-
-
-        console.log(value);
-        axios_service.AddtoCart(value).then((result) => {
-            console.log(result.data);
+         console.log(value);
+         axios_service.AddtoCart(value).then((result) => {
+             console.log(result.data);
             
-        }).catch(() => {
+         }).catch(() => {
 
-        })
+         })
+
+
     }
     
     addtoWishList = (value : any) => {
@@ -133,7 +137,7 @@ export default class BookStore extends Component<IProps, IState> {
 
                     <Grid item xs={12}>
                         <Grid container justify="flex-start">
-                            {this.state.notes.slice(0).reverse().map((value: any) =>
+                            {this.state.notes.reverse().map((value: any, index : any) =>
 
                                 <Grid key={value.id} item >
 
@@ -155,7 +159,7 @@ export default class BookStore extends Component<IProps, IState> {
 
                                                 <div className= "bookbuttons2">
 
-                                                <Button className = "buttonsize1" onClick = {() => this.addtoCart(value.id)} size = "small" variant="contained" color="primary">
+                                                <Button className = "buttonsize1" size = "small" variant="contained" color="primary">
                                                 Added to Bag
                                                 </Button>
 
@@ -165,7 +169,7 @@ export default class BookStore extends Component<IProps, IState> {
 
                                                 <div className= "bookbuttons">
                                                 <div >
-                                                <Button className = "buttonsize" onClick = {() => this.addtoCart(value.id)} size = "small" variant="contained" color="secondary">
+                                                <Button className = "buttonsize" onClick = {() => this.addtoCart(value.id, index)} size = "small" variant="contained" color="secondary">
                                                 Add to Bag
                                                 </Button>
                                                 </div>
