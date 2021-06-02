@@ -1,0 +1,53 @@
+header{
+    display: flex;
+    align-items: center;
+height: 60px;
+background: #A03037 0% 0% no-repeat padding-box;
+opacity: 1;
+}
+
+.MenuBookSharpIcon{
+    color: white;
+    margin-left: 163px;
+}
+
+
+.inputbase{
+    display: flex;
+    margin-left: 100px;
+    top: 14px;
+left: 334px;
+width: 490px;
+height: 33px;
+background: #FCFCFC 0% 0% no-repeat padding-box;
+border-radius: 3px;
+opacity: 1;
+}
+
+.searchIcon{
+
+    margin-top: 4px;
+    top: 24px;
+left: 348px;
+width: 13px;
+height: 13px;
+color: #9D9D9D;
+opacity: 1;
+}
+
+.PersonOutlineOutlinedIcon{
+    display: flex;
+    flex-direction: column;
+    margin-left: 150px;
+    color: white;
+}
+
+
+
+.x{
+    position: relative;
+}
+
+.y{
+    position: absolute;
+}

@@ -37,14 +37,27 @@ interface IState {
     openDropDown?: boolean,
     openDetails?: boolean,
     openDetailsSummary?: boolean,
+
     FullName?: string,
+    Number?: string,
+    PinCode?: any,
+    Locality?: string,
+    Address?: string,
+    City?: string,
+    LandMark?: string,
+
+    FullNameError?: boolean,
+    NumberError?: boolean,
+    PinCodeError?: boolean,
+    LocalityError?: boolean,
+    AddressError?: boolean,
+    CityError?: boolean,
+    LandMarkError?: boolean,
+
     Email?: string,
     Password?: string,
-    Number?: string,
-    FullNameError?: boolean,
     EmailError?: boolean,
-    PasswordError?: boolean,
-    NumberError?: boolean
+    PasswordError?: boolean
 }
 
 export default class Cart extends Component<IProps, IState> {
@@ -61,10 +74,20 @@ export default class Cart extends Component<IProps, IState> {
             Email: '',
             Password: '',
             Number: '',
+            PinCode: '',
+            Locality: '',
+            Address: '',
+            City: '',
+            LandMark: '',
             FullNameError: false,
             EmailError: false,
             PasswordError: false,
-            NumberError: false
+            NumberError: false,
+            PinCodeError: false,
+            LocalityError: false,
+            AddressError: false,
+            CityError: false,
+            LandMarkError: false
         }
 
     }
@@ -72,7 +95,43 @@ export default class Cart extends Component<IProps, IState> {
     change = (e: any) => {
 
         console.log(e.target.value);
-        this.setState({ Email: e.target.value });
+        this.setState({ FullName: e.target.value });
+    }
+
+    change1 = (e: any) => {
+
+        console.log(e.target.value);
+        this.setState({ Number: e.target.value });
+    }
+
+    change2 = (e: any) => {
+
+        console.log(e.target.value);
+        this.setState({ PinCode: e.target.value });
+    }
+
+    change3 = (e: any) => {
+
+        console.log(e.target.value);
+        this.setState({ Locality: e.target.value });
+    }
+
+    change4 = (e: any) => {
+
+        console.log(e.target.value);
+        this.setState({ Address : e.target.value });
+    }
+
+    change5 = (e: any) => {
+
+        console.log(e.target.value);
+        this.setState({ City : e.target.value });
+    }
+
+    change6 = (e: any) => {
+
+        console.log(e.target.value);
+        this.setState({ LandMark : e.target.value });
     }
 
     componentDidMount() {
@@ -83,6 +142,11 @@ export default class Cart extends Component<IProps, IState> {
         axios_service.Getcart().then((result) => {
             console.log(result.data.book);
             this.setState({ notes: result.data.book });
+
+            this.state.notes.forEach((element : object) => {
+               
+            });
+
             console.log(this.state.notes);
             console.log(this.state.notes.bookName[0]);
         }).catch(() => {
@@ -106,8 +170,34 @@ export default class Cart extends Component<IProps, IState> {
         this.setState({ openDetails: true });
     }
 
+    validation = () => {
+        let isError : boolean = false;
+        const errors : any = this.state;
+
+        errors.FullNameError = this.state.FullName === '' ? true : false;
+        errors.NumberError = this.state.Number === '' ? true : false;
+        errors.PinCodeError = this.state.PinCode === '' ? true : false;
+        errors.LocalityError = this.state.Locality === '' ? true : false;
+        errors.AddressError = this.state.Address === '' ? true : false;
+        errors.CityError = this.state.City === '' ? true : false;
+        errors.LandMarkError = this.state.LandMark === '' ? true : false;
+
+        this.setState({
+    
+          ...errors
+        })
+        return isError = (errors.FullName !== '' && errors.Number !== ''
+        && errors.PinCode !== '' && errors.Locality !== ''
+        && errors.Address !== '' && errors.City !== ''
+        && errors.LandMark !== '') ? true : false
+    }
+
     openDetailsforSummary = () => {
+        var isValidated = this.validation();
+        console.log(isValidated);
+        if (isValidated) {
         this.setState({ openDetailsSummary: true });
+        };
     }
 
     render() {
@@ -172,14 +262,14 @@ export default class Cart extends Component<IProps, IState> {
                                 <div className="giveinput">
                                     <div className="a">
                                         <TextField
-                                            error={this.state.NumberError}
+                                            error={this.state.FullNameError}
                                             size="small"
                                             label="Name"
                                             type="text"
                                             name="text"
                                             variant="outlined"
                                             onChange={e => this.change(e)}
-                                            helperText={this.state.NumberError ? "Enter Phone Number" : ''}
+                                            helperText={this.state.FullNameError ? "Name" : ''}
                                         />
                                     </div>
                                     <div className="a">
@@ -190,71 +280,71 @@ export default class Cart extends Component<IProps, IState> {
                                             type="Number"
                                             name="Number"
                                             variant="outlined"
-                                            onChange={e => this.change(e)}
-                                            helperText={this.state.NumberError ? "Enter Phone Number" : ''}
+                                            onChange={e => this.change1(e)}
+                                            helperText={this.state.NumberError ? "Phone Number" : ''}
                                         />
                                     </div>
                                 </div>
                                 <div className="giveinput">
                                     <div className="a">
                                         <TextField
-                                            error={this.state.NumberError}
+                                            error={this.state.PinCodeError}
                                             size="small"
                                             label="Pin Code"
                                             type="text"
                                             name="text"
                                             variant="outlined"
-                                            onChange={e => this.change(e)}
-                                            helperText={this.state.NumberError ? "Enter Phone Number" : ''}
+                                            onChange={e => this.change2(e)}
+                                            helperText={this.state.PinCodeError ? "Pin Code" : ''}
                                         />
                                     </div>
                                     <div className="a">
                                         <TextField
-                                            error={this.state.NumberError}
+                                            error={this.state.LocalityError}
                                             size="small"
                                             label="Locality"
                                             type="text"
                                             name="text"
                                             variant="outlined"
-                                            onChange={e => this.change(e)}
-                                            helperText={this.state.NumberError ? "Enter Phone Number" : ''}
+                                            onChange={e => this.change3(e)}
+                                            helperText={this.state.LocalityError ? "Locality" : ''}
                                         />
                                     </div>
                                 </div>
                                 <div className="b">
                                     <TextField
-                                        error={this.state.NumberError}
+                                        error={this.state.AddressError}
                                         label="Address"
                                         type="text"
                                         name="text"
                                         variant="outlined"
-                                        onChange={e => this.change(e)}
-                                        helperText={this.state.NumberError ? "Enter Phone Number" : ''}
+                                        onChange={e => this.change4(e)}
+                                        helperText={this.state.AddressError ? "Address" : ''}
                                     />
                                 </div>
                                 <div className="giveinput">
                                     <div className="a">
                                         <TextField
-                                            error={this.state.NumberError}
+                                            error={this.state.CityError}
                                             size="small"
                                             label="City/Town"
                                             type="text"
                                             name="text"
                                             variant="outlined"
-                                            onChange={e => this.change(e)}
-                                            helperText={this.state.NumberError ? "Enter Phone Number" : ''}
+                                            onChange={e => this.change5(e)}
+                                            helperText={this.state.CityError ? "City" : ''}
                                         />
                                     </div>
                                     <div className="a">
                                         <TextField
-                                            error={this.state.NumberError}
+                                            error={this.state.LandMarkError}
                                             size="small"
                                             label="Landmark"
                                             type="text"
                                             name="text"
                                             variant="outlined"
-                                            onChange={e => this.change(e)}
-                                            helperText={this.state.NumberError ? "Enter Phone Number" : ''}
+                                            onChange={e => this.change6(e)}
+                                            helperText={this.state.LandMarkError ? "LandMark" : ''}
                                         />
                                     </div>
                                 </div>
@@ -326,7 +416,7 @@ export default class Cart extends Component<IProps, IState> {
 
 
                         <div className="Cart">
-                            <div className="heading">My Cart</div>
+                            <div className="heading">Order Summary</div>
 
                             {this.state.notes.slice(0).reverse().map((value: any) =>
 

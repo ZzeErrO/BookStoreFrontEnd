@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import './Header.css';
 
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
@@ -61,7 +62,9 @@ export default class Header extends Component<IProps, IState> {
     }
 
     toCart = () => {
+        if(this.state.redirect == null){
         this.setState({ redirect: "/cart" });
+        }
     }
 
     opendropdown = () => {

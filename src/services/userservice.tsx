@@ -48,8 +48,8 @@ class Userservice {
     }
 
     Order = (id : any, quantity : any) => {
-        console.log(`${baseUrl}Order/${id}/${quantity}`, id, configbook);
-        return axiosservice.putMethod(`https://localhost:44368/Order/${id}/${quantity}`, id, configbook)
+        console.log(`${baseUrl}Cart/Order/${id}/${quantity}`, id, configbook);
+        return axiosservice.putMethod(`${baseUrl}Cart/Order/${id}/${quantity}`, id, configbook)
     }
 
 }

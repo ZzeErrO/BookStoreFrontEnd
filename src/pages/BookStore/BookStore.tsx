@@ -59,7 +59,11 @@ export default class BookStore extends Component<IProps, IState> {
         axios_service.Getdata().then((result) => {
             console.log(result.data.books);
             this.setState({ notes: result.data.books });
+
+            this.setState({notes : this.state.notes.map((obj : object)=> ( obj = { ...obj, active: false } ))});
+
             console.log(this.state.notes);
+            
             console.log(this.state.notes.bookName[0]);
         }).catch(() => {
 
@@ -67,7 +71,18 @@ export default class BookStore extends Component<IProps, IState> {
     }
 
     addtoCart = (value : any) => {
-        this.setState({openbutton : true});
+
+
+        this.setState({ notes : this.state.notes.forEach((element : any) => {
+            if(value == element.id)
+            {
+                element.active = true
+            }
+        })
+
+    })
+
+
         console.log(value);
         axios_service.AddtoCart(value).then((result) => {
             console.log(result.data);
@@ -136,11 +151,11 @@ export default class BookStore extends Component<IProps, IState> {
                                                 <div className="rating">4.5 <div className="number">({value.availableBooks})</div></div>
                                                 <div className="price">Rs.{value.price}</div>
 
-                                                { this.state.openbutton ? 
+                                                { value.active ? 
 
                                                 <div className= "bookbuttons2">
 
-                                                <Button className = "buttonsize" onClick = {() => this.addtoCart(value.id)} size = "small" variant="contained" color="primary">
+                                                <Button className = "buttonsize1" onClick = {() => this.addtoCart(value.id)} size = "small" variant="contained" color="primary">
                                                 Added to Bag
                                                 </Button>
 
