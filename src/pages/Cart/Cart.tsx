@@ -87,8 +87,27 @@ export default class Cart extends Component<IProps, IState> {
             LocalityError: false,
             AddressError: false,
             CityError: false,
-            LandMarkError: false
+            LandMarkError: false,
         }
+
+    }
+
+    change0 = (e: any, value : any, index : any) => {
+
+        console.log(e);
+        e+=1
+        console.log(e);
+        let findIndex = this.state.notes.findIndex((element : any) => element.id == value);
+
+        console.log(findIndex);
+
+         let newArray = [...this.state.notes]
+
+         newArray[findIndex] = {...newArray[findIndex], quantity : e}
+
+         console.log(newArray[findIndex]);
+
+         this.setState({notes: newArray});
 
     }
 
@@ -219,7 +238,7 @@ export default class Cart extends Component<IProps, IState> {
                     <div className="Cart">
                         <div className="heading">My Cart</div>
 
-                        {this.state.notes.slice(0).reverse().map((value: any) =>
+                        {this.state.notes.slice(0).reverse().map((value: any, index : any) =>
 
                             <div key={value.id} className="cartitems">
 
@@ -230,7 +249,7 @@ export default class Cart extends Component<IProps, IState> {
                                     <div>BookName</div>
                                     <div className="price">Rs.{value.price}</div>
                                     <label>Quantity :</label>
-                                    <input type="number" id="quantity" name="quantity" min="1" max="99"></input>
+                                    <input onChange={e => this.change0(value.quantity, value.id, index)} type="number" id="quantity" name="quantity" min="1" max="99" ></input>
 
                                 </div>
 

@@ -57,14 +57,9 @@ export default class BookStore extends Component<IProps, IState> {
 
     GetData = () => {
         axios_service.Getdata().then((result) => {
-            //console.log(result.data.books);
-            //this.setState({ notes: result.data.books });
 
             this.setState({notes : result.data.books.map((obj : object)=> ( obj = { ...obj, active: false } ))});
 
-            //console.log(this.state.notes);
-            
-            //console.log(this.state.notes.bookName[0]);
         }).catch((ex) => {
             console.log(ex);
         })
