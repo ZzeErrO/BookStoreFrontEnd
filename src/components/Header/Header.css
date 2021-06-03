@@ -42,7 +42,9 @@ opacity: 1;
     color: white;
 }
 
-
+.MuiBadge-anchorOriginTopRightRectangle{
+    border: 1px solid white;
+}
 
 .x{
     position: relative;
@@ -50,4 +52,40 @@ opacity: 1;
 
 .y{
     position: absolute;
+}
+
+.menulist .MuiPaper-root.MuiMenu-paper.MuiPopover-paper.MuiPaper-elevation8.MuiPaper-rounded{
+    top: 10% !important;
+     left: 72% !important;
+}
+
+@media screen and (max-width: 600px){
+
+    .MenuBookSharpIcon{
+        color: white;
+        margin-left: 0px;
+    }
+    
+    
+    .inputbase{
+        display: flex;
+        margin-left: 0px;
+        top: 14px;
+    left: 334px;
+    width: 490px;
+    height: 33px;
+    background: #FCFCFC 0% 0% no-repeat padding-box;
+    border-radius: 3px;
+    opacity: 1;
+    }
+
+    .PersonOutlineOutlinedIcon{
+        display: flex;
+        flex-direction: column;
+        margin-left: 0px;
+        color: white;
+    }
+    
+    
+    
 }

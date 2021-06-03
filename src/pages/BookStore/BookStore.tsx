@@ -10,6 +10,7 @@ import MenuBookSharpIcon from '@material-ui/icons/MenuBookSharp';
 import PersonOutlineOutlinedIcon from '@material-ui/icons/PersonOutlineOutlined';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import Button from '@material-ui/core/Button';
+import Pagination from '@material-ui/lab/Pagination';
 
 import { Redirect } from "react-router-dom";
 
@@ -132,7 +133,7 @@ export default class BookStore extends Component<IProps, IState> {
 
                     <Grid item xs={12}>
                         <Grid container justify="flex-start">
-                            {this.state.notes.reverse().map((value: any, index : any) =>
+                            {this.state.notes.slice(0).reverse().map((value: any, index : any) =>
 
                                 <Grid key={value.id} item >
 
@@ -185,12 +186,15 @@ export default class BookStore extends Component<IProps, IState> {
 
                                 </Grid>
 
+                                
                             )}
                         </Grid>
                     </Grid>
 
 
                 </div>
+
+                <Pagination className = "pageination" count={Math.ceil(this.state.notes.length / 16)} variant="outlined" shape="rounded" />
 
                 <Footer/>
             </div>

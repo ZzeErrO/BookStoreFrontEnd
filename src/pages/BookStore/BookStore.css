@@ -20,7 +20,6 @@ opacity: 1;
 .Body{
     top: 0px;
 left: 0px;
-max-height: 1216px;
 min-height: 83vh;
 background: #FFFFFF 0% 0% no-repeat padding-box;
 opacity: 1;
@@ -187,9 +186,34 @@ opacity: 1;
     padding: 4px;
 }
 
+.pageination{
+    display: flex;
+    justify-content: center;
+}
 
 
 
 
 
+@media screen and (max-width: 600px){
 
+    
+.Body{
+    top: 0px;
+left: 0px;
+min-height: 83vh;
+background: #FFFFFF 0% 0% no-repeat padding-box;
+opacity: 1;
+margin-left: 0px;
+padding: 6%;
+}
+
+
+.ShoppingCartIcon{
+    display: flex;
+    flex-direction: column;
+    margin-left: 0px;
+    color: white;
+}
+
+}

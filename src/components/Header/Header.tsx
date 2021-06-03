@@ -62,7 +62,8 @@ export default class Header extends Component<IProps, IState> {
     }
 
     toCart = () => {
-        if(this.state.redirect == null){
+        console.log(window.location.href)
+        if(window.location.href !== "http://localhost:3000/cart"){
         this.setState({ redirect: "/cart" });
         }
     }
@@ -101,13 +102,17 @@ export default class Header extends Component<IProps, IState> {
                     <div className="PersonOutlineOutlinedIcon">
                         {/* {this.state.openDropDown ? */}
                             <div className="dropdown">
-                                <div className= "x"><PersonOutlineOutlinedIcon onClick={this.opendropdown} /></div>
+                                <div className= "x">
+                                    <PersonOutlineOutlinedIcon onClick={this.opendropdown} />
+                                    <div className="Style"> Person </div>
+                                </div>
                                 <div className="y">
                                 <Menu
                                     id="simple-menu"
                                     keepMounted
                                     open={this.state.openDropDown}
                                     onClose={this.closedropdown}
+                                    className="menulist"
                                     >
                                     <MenuItem onClick={this.closedropdown}>Hello User!!</MenuItem>
                                     <MenuItem onClick={this.toWishList}>My WishList</MenuItem>
