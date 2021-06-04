@@ -165,12 +165,14 @@ export default class Cart extends Component<IProps, IState> {
         })
     }
 
-    orderItems = (id: any, quantity: any) => {
-        axios_service.Order(id, quantity).then((result) => {
-            console.log(result.data);
-        }).catch(() => {
-
-        })
+    orderItems = () => {
+        this.state.notes.forEach((element : any )=> {
+            axios_service.Order(element.bookId, element.quantity).then((result) => {
+                console.log(result.data);
+            }).catch(() => {
+    
+            })
+        });
 
         this.setState({ redirect: "/success" });
 
@@ -444,16 +446,16 @@ export default class Cart extends Component<IProps, IState> {
                                             <div className="price">Rs.{value.price}</div>
                                         </div>
 
-                                        <div className="Place">
-                                        <Button className="buttonsize" onClick={() => this.orderItems(value.bookId, value.quantity)} size="small" color="primary" variant="contained">
-                                            Checkout
-                                        </Button>
-                                    </div>
-
                                     </div>
 
                                 </div>
                             )}
+
+                            <div className="Place">
+                                        <Button className="buttonsize" onClick={this.orderItems} size="small" color="primary" variant="contained">
+                                            Checkout
+                                        </Button>
+                            </div>
 
                         </div>
                         :
