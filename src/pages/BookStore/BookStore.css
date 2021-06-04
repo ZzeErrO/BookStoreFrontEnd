@@ -23,7 +23,7 @@ left: 0px;
 min-height: 83vh;
 background: #FFFFFF 0% 0% no-repeat padding-box;
 opacity: 1;
-margin-left: 174px;
+padding-left: 10%;
 }
 
 .Title{
@@ -106,6 +106,10 @@ color: #FFFFFF;
 opacity: 1;
 }
 
+.rate{
+    margin-left: 28%;
+}
+
 .number{
     margin-left: 24px;
     top: 367px;
@@ -159,15 +163,6 @@ color: #FFFFFF;
 opacity: 1;
 }
 
-.text{
-    color: white;
-    margin-left: 163px;
-    display: flex;
-    justify-content: center;
-    margin-top: 2px;
-    margin-right: 200px;
-}
-
 .bookbuttons{
     display: flex;
     justify-content: space-between;
@@ -205,7 +200,7 @@ min-height: 83vh;
 background: #FFFFFF 0% 0% no-repeat padding-box;
 opacity: 1;
 margin-left: 0px;
-padding: 6%;
+padding: 13%;
 }
 
 

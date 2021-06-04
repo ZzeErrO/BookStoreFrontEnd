@@ -120,3 +120,18 @@ min-height: 525px;
     background: transparent 0% 0% no-repeat padding-box;
     opacity: 1;
     }
+
+
+
+
+@media screen and (max-width: 600px){
+
+    .Paper2{
+        width: 100px;
+        margin-left: 14px;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+    }
+    
+}

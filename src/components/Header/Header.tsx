@@ -48,9 +48,9 @@ export default class Header extends Component<IProps, IState> {
 
     GetCart = () => {
         axios_service.Getcart().then((result) => {
-            console.log(result.data.book);
+            
             this.setState({ notes: result.data.book });
-            console.log(this.state.notes);
+            
             console.log(this.state.notes.bookName[0]);
         }).catch(() => {
 

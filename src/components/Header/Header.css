@@ -69,7 +69,8 @@ opacity: 1;
     
     .inputbase{
         display: flex;
-        margin-left: 0px;
+        margin-left: 40px;
+        margin-right: 30px;
         top: 14px;
     left: 334px;
     width: 490px;

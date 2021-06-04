@@ -92,22 +92,22 @@ export default class Cart extends Component<IProps, IState> {
 
     }
 
-    change0 = (e: any, value : any, index : any) => {
+    change0 = (e: any, value: any, index: any) => {
 
         console.log(e);
-        e+=1
+        e += 1
         console.log(e);
-        let findIndex = this.state.notes.findIndex((element : any) => element.id == value);
+        let findIndex = this.state.notes.findIndex((element: any) => element.id == value);
 
         console.log(findIndex);
 
-         let newArray = [...this.state.notes]
+        let newArray = [...this.state.notes]
 
-         newArray[findIndex] = {...newArray[findIndex], quantity : e}
+        newArray[findIndex] = { ...newArray[findIndex], quantity: e }
 
-         console.log(newArray[findIndex]);
+        console.log(newArray[findIndex]);
 
-         this.setState({notes: newArray});
+        this.setState({ notes: newArray });
 
     }
 
@@ -138,19 +138,19 @@ export default class Cart extends Component<IProps, IState> {
     change4 = (e: any) => {
 
         console.log(e.target.value);
-        this.setState({ Address : e.target.value });
+        this.setState({ Address: e.target.value });
     }
 
     change5 = (e: any) => {
 
         console.log(e.target.value);
-        this.setState({ City : e.target.value });
+        this.setState({ City: e.target.value });
     }
 
     change6 = (e: any) => {
 
         console.log(e.target.value);
-        this.setState({ LandMark : e.target.value });
+        this.setState({ LandMark: e.target.value });
     }
 
     componentDidMount() {
@@ -162,8 +162,8 @@ export default class Cart extends Component<IProps, IState> {
             console.log(result.data.book);
             this.setState({ notes: result.data.book });
 
-            this.state.notes.forEach((element : object) => {
-               
+            this.state.notes.forEach((element: object) => {
+
             });
 
             console.log(this.state.notes);
@@ -173,7 +173,7 @@ export default class Cart extends Component<IProps, IState> {
         })
     }
 
-    orderItems = (id : any, quantity : any) => {
+    orderItems = (id: any, quantity: any) => {
         axios_service.Order(id, quantity).then((result) => {
             console.log(result.data);
         }).catch(() => {
@@ -190,8 +190,8 @@ export default class Cart extends Component<IProps, IState> {
     }
 
     validation = () => {
-        let isError : boolean = false;
-        const errors : any = this.state;
+        let isError: boolean = false;
+        const errors: any = this.state;
 
         errors.FullNameError = this.state.FullName === '' ? true : false;
         errors.NumberError = this.state.Number === '' ? true : false;
@@ -202,20 +202,20 @@ export default class Cart extends Component<IProps, IState> {
         errors.LandMarkError = this.state.LandMark === '' ? true : false;
 
         this.setState({
-    
-          ...errors
+
+            ...errors
         })
         return isError = (errors.FullName !== '' && errors.Number !== ''
-        && errors.PinCode !== '' && errors.Locality !== ''
-        && errors.Address !== '' && errors.City !== ''
-        && errors.LandMark !== '') ? true : false
+            && errors.PinCode !== '' && errors.Locality !== ''
+            && errors.Address !== '' && errors.City !== ''
+            && errors.LandMark !== '') ? true : false
     }
 
     openDetailsforSummary = () => {
         var isValidated = this.validation();
         console.log(isValidated);
         if (isValidated) {
-        this.setState({ openDetailsSummary: true });
+            this.setState({ openDetailsSummary: true });
         };
     }
 
@@ -238,7 +238,7 @@ export default class Cart extends Component<IProps, IState> {
                     <div className="Cart">
                         <div className="heading">My Cart</div>
 
-                        {this.state.notes.slice(0).reverse().map((value: any, index : any) =>
+                        {this.state.notes.slice(0).reverse().map((value: any, index: any) =>
 
                             <div key={value.id} className="cartitems">
 
@@ -246,7 +246,7 @@ export default class Cart extends Component<IProps, IState> {
 
                                 <div className="Paper2">
 
-                                    <div>BookName</div>
+                                    <div>{value.bookName}</div>
                                     <div className="price">Rs.{value.price}</div>
                                     <label>Quantity :</label>
                                     <input onChange={e => this.change0(value.quantity, value.id, index)} type="number" id="quantity" name="quantity" min="1" max="99" ></input>
@@ -438,15 +438,17 @@ export default class Cart extends Component<IProps, IState> {
                             <div className="heading">Order Summary</div>
 
                             {this.state.notes.slice(0).reverse().map((value: any) =>
+                                <div>
+                                    <div key={value.id} className="cartitems">
 
-                                <div key={value.id} className="cartitems">
+                                        <img id="image2" src={book1} alt="Book" />
 
-                                    <img id="image2" src={book1} alt="Book" />
+                                        <div className="Paper2">
 
-                                    <div className="Paper2">
+                                            <div>{value.bookName}</div>
+                                            <div className="price">Rs.{value.price}</div>
+                                        </div>
 
-                                        <div>BookName</div>
-                                        <div className="price">Rs.{value.price}</div>
                                     </div>
 
                                     <div className="Place">

@@ -26,6 +26,7 @@ import book7 from '../assets/book7.png';
 
 import Header from '../../components/Header/Header'
 import Footer from '../../components/Footer/Footer'
+import { AnyPtrRecord } from 'dns';
 
 const axios_service = new Userservice();
 
@@ -34,9 +35,20 @@ interface IProps {
 
 interface IState {
     notes?: any,
+    cartnotes?: any,
     redirect?: any,
     openDropDown? : boolean,
     openbutton? : boolean
+}
+
+function CheckTF(id : any, cartnotes : any)
+{
+    cartnotes.forEach((value : any) => {
+        if (value.bookId === id) {
+            return true;
+        }
+    })
+
 }
 
 export default class BookStore extends Component<IProps, IState> {
@@ -45,6 +57,7 @@ export default class BookStore extends Component<IProps, IState> {
         super(props);
         this.state = {
             notes: [],
+            cartnotes: [],
             redirect: null,
             openDropDown: false,
             openbutton: false
@@ -54,15 +67,41 @@ export default class BookStore extends Component<IProps, IState> {
 
     componentDidMount() {
         this.GetData();
+        this.GetCart();
+        console.log(this.CheckTF("60b65e28e51e2f305b89c529"));
     }
+
+    CheckTF = (id : any) : boolean =>
+    {
+        let check: boolean = false;
+        this.state.cartnotes.forEach((value : any) => {
+            if (value.bookId === id) {
+                console.log(value.bookId);
+                check = true;
+            }
+        })
+
+        return check;
+
+    }
+
 
     GetData = () => {
         axios_service.Getdata().then((result) => {
-
             this.setState({notes : result.data.books.map((obj : object)=> ( obj = { ...obj, active: false } ))});
-
+            console.log(this.state.notes);
         }).catch((ex) => {
             console.log(ex);
+        })
+
+    }
+
+    GetCart = () => {
+        axios_service.Getcart().then((result) => {
+            this.setState({ cartnotes: result.data.book });
+            console.log(this.state.cartnotes);
+        }).catch(() => {
+
         })
     }
 
@@ -88,7 +127,6 @@ export default class BookStore extends Component<IProps, IState> {
          }).catch(() => {
 
          })
-
 
     }
     
@@ -148,10 +186,12 @@ export default class BookStore extends Component<IProps, IState> {
 
                                                 <div className="bookName">{value.bookName} </div>
                                                 <div className="by">by {value.authors}</div>
-                                                <div className="rating">4.5 <div className="number">({value.availableBooks})</div></div>
+                                                <div className="rating"><div className = "rate">4.5</div> <div className="number">({value.availableBooks})</div></div>
                                                 <div className="price">Rs.{value.price}</div>
 
-                                                { value.active ? 
+                                                { this.CheckTF(value.id)
+                                                
+                                                ? 
 
                                                 <div className= "bookbuttons2">
 
