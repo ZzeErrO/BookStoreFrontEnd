@@ -159,15 +159,7 @@ export default class Cart extends Component<IProps, IState> {
 
     GetCart = () => {
         axios_service.Getcart().then((result) => {
-            console.log(result.data.book);
             this.setState({ notes: result.data.book });
-
-            this.state.notes.forEach((element: object) => {
-
-            });
-
-            console.log(this.state.notes);
-            console.log(this.state.notes.bookName[0]);
         }).catch(() => {
 
         })
@@ -179,6 +171,9 @@ export default class Cart extends Component<IProps, IState> {
         }).catch(() => {
 
         })
+
+        this.setState({ redirect: "/success" });
+
     }
 
     toCart = () => {
@@ -449,13 +444,14 @@ export default class Cart extends Component<IProps, IState> {
                                             <div className="price">Rs.{value.price}</div>
                                         </div>
 
-                                    </div>
-
-                                    <div className="Place">
+                                        <div className="Place">
                                         <Button className="buttonsize" onClick={() => this.orderItems(value.bookId, value.quantity)} size="small" color="primary" variant="contained">
                                             Checkout
                                         </Button>
                                     </div>
+
+                                    </div>
+
                                 </div>
                             )}
 

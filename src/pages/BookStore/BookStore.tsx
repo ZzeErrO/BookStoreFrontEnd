@@ -68,7 +68,6 @@ export default class BookStore extends Component<IProps, IState> {
     componentDidMount() {
         this.GetData();
         this.GetCart();
-        console.log(this.CheckTF("60b65e28e51e2f305b89c529"));
     }
 
     CheckTF = (id : any) : boolean =>
@@ -76,7 +75,6 @@ export default class BookStore extends Component<IProps, IState> {
         let check: boolean = false;
         this.state.cartnotes.forEach((value : any) => {
             if (value.bookId === id) {
-                console.log(value.bookId);
                 check = true;
             }
         })
@@ -93,7 +91,6 @@ export default class BookStore extends Component<IProps, IState> {
         }).catch((ex) => {
             console.log(ex);
         })
-
     }
 
     GetCart = () => {

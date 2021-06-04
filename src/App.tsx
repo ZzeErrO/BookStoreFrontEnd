@@ -8,6 +8,7 @@ import BookStore from './pages/BookStore/BookStore';
 import Cart from './pages/Cart/Cart';
 import WishList from './pages/WishList/WishList';
 import NOTFOUND from './components/NOTFOUND/Notfound';
+import OrderSuccess from './pages/OrderSuccessFul/OrderSuccess';
 
 function App() {
 
@@ -19,6 +20,7 @@ function App() {
       <Route exact path= "/bookStore" component={BookStore} />
       <Route exact path= "/cart" component={Cart} />
       <Route exact path= "/wishlist" component={WishList} />
+      <Route exact path= "/success" component={OrderSuccess} />
       <Route path="*" component={NOTFOUND} />
     </Switch>
   </BrowserRouter>
