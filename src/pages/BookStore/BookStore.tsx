@@ -16,6 +16,8 @@ import { Redirect } from "react-router-dom";
 
 import Userservice from '../../services/userservice';
 
+import AppContext from '../../components/Context';
+
 import book1 from '../../assets/book1.png';
 import book2 from '../assets/book2.png';
 import book3 from '../assets/book3.png';
@@ -27,6 +29,7 @@ import book7 from '../assets/book7.png';
 import Header from '../../components/Header/Header'
 import Footer from '../../components/Footer/Footer'
 import { AnyPtrRecord } from 'dns';
+import { isConstructorDeclaration } from 'typescript';
 
 const axios_service = new Userservice();
 
@@ -38,17 +41,8 @@ interface IState {
     cartnotes?: any,
     redirect?: any,
     openDropDown? : boolean,
-    openbutton? : boolean
-}
-
-function CheckTF(id : any, cartnotes : any)
-{
-    cartnotes.forEach((value : any) => {
-        if (value.bookId === id) {
-            return true;
-        }
-    })
-
+    openbutton? : boolean,
+    currentPage?: any
 }
 
 export default class BookStore extends Component<IProps, IState> {
@@ -60,7 +54,8 @@ export default class BookStore extends Component<IProps, IState> {
             cartnotes: [],
             redirect: null,
             openDropDown: false,
-            openbutton: false
+            openbutton: false,
+            currentPage: 0
         }
 
     }
@@ -125,6 +120,8 @@ export default class BookStore extends Component<IProps, IState> {
 
          })
 
+         this.GetCart();
+
     }
     
     addtoWishList = (value : any) => {
@@ -151,6 +148,11 @@ export default class BookStore extends Component<IProps, IState> {
         this.setState({ openDropDown : false });
     }
 
+    pageFunction = (event: object, page: number) => {
+        console.log(" Page: " + page + " nextIndex: " + (page -1) * 16);
+        this.setState({currentPage: (page -1) * 16 });
+    }
+
     render() {
 
         if (this.state.redirect) {
@@ -161,14 +163,15 @@ export default class BookStore extends Component<IProps, IState> {
         return (
 
             <div>
-                <Header/>
+                <AppContext.Provider value={this.state.cartnotes.length}>
+                    <Header/>
+                </AppContext.Provider>
                 <div className="Body">
-                    <div className="Title">Books</div>
-
+                    <div className="Title">Books({this.state.notes.length})</div>
 
                     <Grid item xs={12}>
                         <Grid container justify="flex-start">
-                            {this.state.notes.slice(0).reverse().map((value: any, index : any) =>
+                            {this.state.notes.slice(this.state.currentPage , this.state.currentPage + 16).reverse().map((value: any, index : any) =>
 
                                 <Grid key={value.id} item >
 
@@ -231,7 +234,7 @@ export default class BookStore extends Component<IProps, IState> {
 
                 </div>
 
-                <Pagination className = "pageination" count={Math.ceil(this.state.notes.length / 16)} variant="outlined" shape="rounded" />
+                <Pagination className = "pageination" onChange = {this.pageFunction} count={Math.ceil(this.state.notes.length / 16)} variant="outlined" shape="rounded" />
 
                 <Footer/>
             </div>

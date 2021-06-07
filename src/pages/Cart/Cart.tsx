@@ -37,6 +37,7 @@ interface IState {
     openDropDown?: boolean,
     openDetails?: boolean,
     openDetailsSummary?: boolean,
+    open?: boolean,
 
     FullName?: string,
     Number?: string,
@@ -57,7 +58,7 @@ interface IState {
     Email?: string,
     Password?: string,
     EmailError?: boolean,
-    PasswordError?: boolean
+    PasswordError?: boolean,
 }
 
 export default class Cart extends Component<IProps, IState> {
@@ -70,6 +71,7 @@ export default class Cart extends Component<IProps, IState> {
             openDropDown: false,
             openDetails: false,
             openDetailsSummary: false,
+            open: false,
             FullName: '',
             Email: '',
             Password: '',
@@ -160,6 +162,9 @@ export default class Cart extends Component<IProps, IState> {
     GetCart = () => {
         axios_service.Getcart().then((result) => {
             this.setState({ notes: result.data.book });
+            if (this.state.notes.length === 0) {
+                this.setState({ open: true })
+            }
         }).catch(() => {
 
         })
@@ -254,16 +259,23 @@ export default class Cart extends Component<IProps, IState> {
 
                         )}
 
-                        {this.state.openDetails ?
+                        { this.state.openDetails ?
 
                             <div></div>
 
                             :
+                            <div>
+                            { this.state.open ? 
 
-                            <div className="PlaceOrder">
-                                <Button className="buttonsize" onClick={this.openDetailsforCustomer} size="small" color="primary" variant="contained">
-                                    Place Order
-                                </Button>
+                                <div></div>
+
+                                :
+                                <div className="PlaceOrder">
+                                    <Button className="buttonsize" onClick={this.openDetailsforCustomer} size="small" color="primary" variant="contained">
+                                        Place Order
+                                    </Button>
+                                </div>
+                            }
                             </div>
                         }
                     </div>

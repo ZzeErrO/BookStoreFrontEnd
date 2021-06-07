@@ -17,6 +17,8 @@ import { Redirect } from "react-router-dom";
 
 import Userservice from '../../services/userservice';
 
+import AppContext from '../../components/Context';
+
 import book1 from '../assets/book1.png';
 
 
@@ -30,6 +32,8 @@ interface IState {
     redirect?: any,
     openDropDown: boolean
 }
+
+const NumberContext : any = React.createContext(0);
 
 export default class Header extends Component<IProps, IState> {
     constructor(props: any) {
@@ -129,12 +133,15 @@ export default class Header extends Component<IProps, IState> {
                         //} */}
                     </div>
                     <div className="ShoppingCartIcon">
-                        <Badge badgeContent={this.state.notes.length} >
+                    <AppContext.Consumer>
+                        { (value : any) => (
+                        <Badge badgeContent={value} >
 
                             <ShoppingCartIcon onClick={this.toCart} /> 
-
+                    
                         </Badge>
-
+                        )}
+                    </AppContext.Consumer>
                         <div className="Style">Cart</div></div>
 
                 </header>
