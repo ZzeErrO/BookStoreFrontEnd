@@ -52,6 +52,16 @@ class Userservice {
         return axiosservice.putMethod(`${baseUrl}Cart/Order/${id}/${quantity}`, id, configbook)
     }
 
+    DeleteWishList  = (id : any) => {
+        console.log(`${baseUrl}WishList/${id}`, configbook);
+        return axiosservice.deleteMethod(`${baseUrl}WishList/${id}`, configbook)
+    }
+
+    DeleteCart  = (id : any) => {
+        console.log(`${baseUrl}Cart/${id}`, configbook);
+        return axiosservice.deleteMethod(`${baseUrl}Cart/${id}`, configbook)
+    }
+
 }
 
 export default Userservice

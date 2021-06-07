@@ -84,6 +84,15 @@ export default class WishList extends Component<IProps, IState> {
         })
     }
 
+    delete = (value : any) => {
+        axios_service.DeleteWishList(value).then((result) => {
+            console.log(result.data);
+            
+        }).catch(() => {
+
+        })
+    }
+
 
     render() {
 
@@ -116,7 +125,7 @@ export default class WishList extends Component<IProps, IState> {
 
                                                 <div className="price">Rs.{value.price}</div>
                                                 <p></p>
-                                                <div><button onClick = {() => this.movetoCart(value.bookId)}>Move to Cart</button> <DeleteOutlineOutlinedIcon className = "DeleteIcon"/> </div>
+                                                <div><button onClick = {() => this.movetoCart(value.bookId)}>Move to Cart</button> <DeleteOutlineOutlinedIcon className = "DeleteIcon" onClick = {() => this.delete(value.bookId)}/> </div>
 
                                             </div>
 

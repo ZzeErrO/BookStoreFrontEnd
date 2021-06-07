@@ -221,6 +221,15 @@ export default class Cart extends Component<IProps, IState> {
         };
     }
 
+    delete = (value : any) => {
+        axios_service.DeleteCart(value).then((result) => {
+            console.log(result.data);
+            
+        }).catch(() => {
+
+        })
+    }
+
     render() {
 
         if (this.state.redirect) {
@@ -252,6 +261,7 @@ export default class Cart extends Component<IProps, IState> {
                                     <div className="price">Rs.{value.price}</div>
                                     <label>Quantity :</label>
                                     <input onChange={e => this.change0(value.quantity, value.id, index)} type="number" id="quantity" name="quantity" min="1" max="99" ></input>
+                                    <DeleteOutlineOutlinedIcon className = "DeleteIcon" onClick = {() => this.delete(value.bookId)}/>
 
                                 </div>
 
