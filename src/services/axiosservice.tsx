@@ -6,7 +6,6 @@ axios.interceptors.request.use((request : any) => {
 });
 
 axios.interceptors.response.use((response : any) => {
-    let data: any = []
 
     return Promise.resolve(response)
 });

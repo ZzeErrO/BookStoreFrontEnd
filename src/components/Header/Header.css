@@ -66,6 +66,25 @@ opacity: 1;
      width: 490px;
 }
 
+.insidemenu2{
+    display: flex;
+    justify-content: center;
+    font: normal normal medium 12px/16px Roboto;
+letter-spacing: 0px;
+color: #0A0102;
+opacity: 1;
+}
+
+.buttonsize2{
+width: 118px;
+background-color: white !important;
+}
+
+.buttonsize2 .MuiButton-label {
+    border: 1px solid #A03037 !important;
+    border-radius: 0px !important;
+}
+
 @media screen and (max-width: 600px){
 
     .MenuBookSharpIcon{

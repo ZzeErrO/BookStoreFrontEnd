@@ -173,9 +173,11 @@ export default class Header extends Component<IProps, IState> {
                                     onClose={this.closedropdown}
                                     className="menulist"
                                     >
-                                    <MenuItem onClick={this.closedropdown}>Hello User!!</MenuItem>
+                                    <div className = "insidemenu2"><strong>Hello Prashik!!</strong></div>
                                     <MenuItem onClick={this.toWishList}>My WishList</MenuItem>
-                                    <MenuItem onClick={this.closedropdown}>Logout</MenuItem>
+                                    <Button className = "buttonsize2" size = "small" variant="contained">
+                                                    Logout
+                                    </Button>
 
                                 </Menu>
                                 </div>

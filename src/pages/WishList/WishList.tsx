@@ -87,6 +87,7 @@ export default class WishList extends Component<IProps, IState> {
     delete = (value : any) => {
         axios_service.DeleteWishList(value).then((result) => {
             console.log(result.data);
+            this.GetWishList();
             
         }).catch(() => {
 
@@ -105,7 +106,7 @@ export default class WishList extends Component<IProps, IState> {
             <div>
                 <Header/>
                 <div className="Body">
-                    <div className="Title"><a href ="http://localhost:3000/bookStore">Home</a>/WishList</div>
+                    <div className="Title"><a href ="http://localhost:3000/bookStore">Home</a>/WishList({this.state.notes.length})</div>
 
 
                     <Grid item xs={12}>
@@ -122,7 +123,7 @@ export default class WishList extends Component<IProps, IState> {
                                             </div>
 
                                             <div className="Intro">
-
+                                                <div className="bookName">{value.bookName} </div>
                                                 <div className="price">Rs.{value.price}</div>
                                                 <p></p>
                                                 <div><button onClick = {() => this.movetoCart(value.bookId)}>Move to Cart</button> <DeleteOutlineOutlinedIcon className = "DeleteIcon" onClick = {() => this.delete(value.bookId)}/> </div>
