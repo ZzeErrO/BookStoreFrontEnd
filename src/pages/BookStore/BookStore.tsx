@@ -149,8 +149,8 @@ export default class BookStore extends Component<IProps, IState> {
     }
 
     pageFunction = (event: object, page: number) => {
-        console.log(" Page: " + page + " nextIndex: " + (page -1) * 16);
-        this.setState({currentPage: (page -1) * 16 });
+        console.log(" Page: " + page + " nextIndex: " + (page -1) * 12);
+        this.setState({currentPage: (page -1) * 12 });
     }
 
     render() {
@@ -171,7 +171,7 @@ export default class BookStore extends Component<IProps, IState> {
 
                     <Grid item xs={12}>
                         <Grid container justify="flex-start">
-                            {this.state.notes.slice(this.state.currentPage , this.state.currentPage + 16).reverse().map((value: any, index : any) =>
+                            {this.state.notes.slice(this.state.currentPage , this.state.currentPage + 12).reverse().map((value: any, index : any) =>
 
                                 <Grid key={value.id} item >
 
@@ -186,9 +186,18 @@ export default class BookStore extends Component<IProps, IState> {
 
                                                 <div className="bookName">{value.bookName} </div>
                                                 <div className="by">by {value.authors}</div>
-                                                <div className="rating"><div className = "rate">4.5</div> <div className="number">({value.availableBooks})</div></div>
+                                                <div className="rating">
+                                                    <div className = "rate">4.5</div>
+                                                    <div className="number">
+                                                        ({value.availableBooks})
+                                                    </div>
+                                                </div>
                                                 <div className="price">Rs.{value.price}</div>
 
+                                                {value.availableBooks !==0 
+                                                
+                                                ?
+                                                <div>
                                                 { this.CheckTF(value.id)
                                                 
                                                 ? 
@@ -217,6 +226,17 @@ export default class BookStore extends Component<IProps, IState> {
                                                 </div>
 
                                                 }
+                                                </div>
+
+                                                :
+
+                                                <div>
+                                                <Button className = "buttonsize1" size = "small" variant="contained">
+                                                    WishList
+                                                </Button>
+                                                </div>
+
+                                            }
 
                                             </div>
 
@@ -234,7 +254,7 @@ export default class BookStore extends Component<IProps, IState> {
 
                 </div>
 
-                <Pagination className = "pageination" onChange = {this.pageFunction} count={Math.ceil(this.state.notes.length / 16)} variant="outlined" shape="rounded" />
+                <Pagination className = "pageination" onChange = {this.pageFunction} count={Math.ceil(this.state.notes.length / 12)} variant="outlined" shape="rounded" />
 
                 <Footer/>
             </div>

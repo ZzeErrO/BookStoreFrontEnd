@@ -28,9 +28,13 @@ interface IProps {
 }
 
 interface IState {
+    books?: any,
     notes?: any,
     redirect?: any,
-    openDropDown: boolean
+    openDropDown: boolean,
+    openDropDown2: boolean,
+    search ?: any,
+    searchbook?: any
 }
 
 const NumberContext : any = React.createContext(0);
@@ -39,15 +43,29 @@ export default class Header extends Component<IProps, IState> {
     constructor(props: any) {
         super(props);
         this.state = {
+            books: [],
             notes: [],
             redirect: null,
-            openDropDown: false
+            openDropDown: false,
+            openDropDown2: false,
+            search: '',
+            searchbook : ''
         }
 
     }
 
     componentDidMount() {
+        this.GetData();
         this.GetCart();
+    }
+
+    GetData = () => {
+        axios_service.Getdata().then((result) => {
+            this.setState({books : result.data.books.map((obj : object)=> ( obj = { ...obj, active: false } ))});
+            console.log(this.state.books);
+        }).catch((ex) => {
+            console.log(ex);
+        })
     }
 
     GetCart = () => {
@@ -80,6 +98,22 @@ export default class Header extends Component<IProps, IState> {
         this.setState({ openDropDown: false });
     }
 
+    closedropdown2 = () => {
+        this.setState({ openDropDown2: false });
+    }
+
+    search =(e: any) => {
+        console.log(e.target.value);
+        this.setState({ search : e.target.value });
+        this.state.books.forEach((element : any) => {
+            if (e.target.value === element.bookName) {
+                this.setState({ openDropDown2: true });
+                this.setState({ searchbook : element.bookName });
+                console.log(element.bookName)
+            }
+        });
+    }
+
     render() {
 
         if (this.state.redirect) {
@@ -97,10 +131,31 @@ export default class Header extends Component<IProps, IState> {
                     <div className="inputbase">
 
                         <div className="searchIcon"><SearchIcon /></div>
+
+
+                        <div>
+
                         <InputBase
-                            placeholder="Search"
-                            inputProps={{ 'aria-label': 'search' }}
+                        onChange = {e => this.search(e)}
+                        placeholder="Search"
+                        inputProps={{ 'aria-label': 'search' }}
                         />
+                        <div>
+                            <Menu
+                                id="simple-menu"
+                                keepMounted
+                                open={this.state.openDropDown2}
+                                onClose={this.closedropdown2}
+                                className="menulist2"
+                            >
+                                <MenuItem onClick={this.closedropdown2}>{this.state.searchbook}</MenuItem>
+                            </Menu>
+                        </div>
+
+                        </div>
+
+                        
+
                     </div>
 
                     <div className="PersonOutlineOutlinedIcon">

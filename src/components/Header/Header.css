@@ -59,6 +59,13 @@ opacity: 1;
      left: 72% !important;
 }
 
+
+.menulist2 .MuiPaper-root.MuiMenu-paper.MuiPopover-paper.MuiPaper-elevation8.MuiPaper-rounded{
+    top: 8% !important;
+     left: 28% !important;
+     width: 490px;
+}
+
 @media screen and (max-width: 600px){
 
     .MenuBookSharpIcon{

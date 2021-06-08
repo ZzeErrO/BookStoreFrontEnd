@@ -244,7 +244,7 @@ export default class Cart extends Component<IProps, IState> {
 
                 <div className="Body2">
 
-                    <div className="Title"><a href="http://localhost:3000/bookStore">Home</a>/Cart</div>
+                    <div className="Title"><a href="http://localhost:3000/bookStore">Home</a>/Cart({this.state.notes.length})</div>
 
                     <div className="Cart">
                         <div className="heading">My Cart</div>
