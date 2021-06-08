@@ -78,7 +78,6 @@ export default class BookStore extends Component<IProps, IState> {
 
     }
 
-
     GetData = () => {
         axios_service.Getdata().then((result) => {
             this.setState({notes : result.data.books.map((obj : object)=> ( obj = { ...obj, active: false } ))});
@@ -101,7 +100,7 @@ export default class BookStore extends Component<IProps, IState> {
 
         let findIndex = this.state.notes.findIndex((element : any) => element.id == value);
 
-        console.log(findIndex);
+        //console.log(findIndex);
 
          let newArray = [...this.state.notes]
 
@@ -111,16 +110,12 @@ export default class BookStore extends Component<IProps, IState> {
 
          this.setState({notes: newArray});
 
-
-         console.log(value);
          axios_service.AddtoCart(value).then((result) => {
-             console.log(result.data);
-            
+         console.log(result.data);
+         this.GetCart();
          }).catch(() => {
 
          })
-
-         this.GetCart();
 
     }
     
@@ -153,6 +148,26 @@ export default class BookStore extends Component<IProps, IState> {
         this.setState({currentPage: (page -1) * 12 });
     }
 
+    descriptionshow = (id: any, index : any) => {
+        let findIndex = this.state.notes.findIndex((element : any) => element.id == id);
+
+         let newArray = [...this.state.notes]
+
+         newArray[findIndex].isdescription = true;
+
+         this.setState({notes: newArray});
+    }
+
+    descriptionclose = (id: any, index : any) => {
+        let findIndex = this.state.notes.findIndex((element : any) => element.id == id);
+
+         let newArray = [...this.state.notes]
+
+         newArray[findIndex].isdescription = false;
+
+         this.setState({notes: newArray});
+    }
+
     render() {
 
         if (this.state.redirect) {
@@ -178,9 +193,32 @@ export default class BookStore extends Component<IProps, IState> {
                                     <Paper className="paper">
 
                                         <div>
+                                            {value.availableBooks !==0
+
+                                            ?
+                                            
                                             <div className="img">
-                                                <img id = "image2" src={book1} alt="Book" />
+                                                {value.isdescription
+                                                    ?
+                                                    <div>
+                                                    <img id = "image2" src={book1} alt="Book" onMouseLeave={() => this.descriptionclose(value.id, index)}/>
+                                                    <div>
+                                                        {value.description}
+                                                    </div>
+                                                    </div>
+                                                    :
+                                                    <img id = "image2" src={book1} alt="Book" onMouseEnter = {() => this.descriptionshow(value.id, index)}/>
+                                                }
                                             </div>
+
+                                            :
+
+                                            <div className="img2">
+                                                <img id = "image3" src={book1} alt="Book" />
+                                                <div className = "outofstock">OUT OF STOCK</div>
+                                            </div>
+
+                                            }
 
                                             <div className="Intro">
 
@@ -197,6 +235,7 @@ export default class BookStore extends Component<IProps, IState> {
                                                 {value.availableBooks !==0 
                                                 
                                                 ?
+
                                                 <div>
                                                 { this.CheckTF(value.id)
                                                 
@@ -218,7 +257,7 @@ export default class BookStore extends Component<IProps, IState> {
                                                 Add to Bag
                                                 </Button>
                                                 </div>
-                                                <div >
+                                                <div>
                                                 <Button className = "buttonsize" onClick = {() => this.addtoWishList(value.id)} size = "small" variant="contained">
                                                 WishList
                                                 </Button>
@@ -231,7 +270,7 @@ export default class BookStore extends Component<IProps, IState> {
                                                 :
 
                                                 <div>
-                                                <Button className = "buttonsize1" size = "small" variant="contained">
+                                                <Button className = "buttonsize1" onClick = {() => this.addtoWishList(value.id)} size = "small" variant="contained">
                                                     WishList
                                                 </Button>
                                                 </div>

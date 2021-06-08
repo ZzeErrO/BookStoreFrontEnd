@@ -113,16 +113,6 @@ min-height: 525px;
     height: 30px;
 }
 
-#image2{
-    margin-top: 10px;
-    width: 109px;
-    height: 135px;
-    background: transparent 0% 0% no-repeat padding-box;
-    opacity: 1;
-    }
-
-
-
 
 @media screen and (max-width: 600px){
 

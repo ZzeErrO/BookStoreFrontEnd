@@ -224,6 +224,7 @@ export default class Cart extends Component<IProps, IState> {
     delete = (value : any) => {
         axios_service.DeleteCart(value).then((result) => {
             console.log(result.data);
+            this.GetCart();
             
         }).catch(() => {
 

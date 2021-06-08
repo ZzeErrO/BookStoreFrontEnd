@@ -1,12 +1,13 @@
 import axios from 'axios'
 
 axios.interceptors.request.use((request : any) => {
-    console.log(request);
+
     return Promise.resolve(request);
 });
 
 axios.interceptors.response.use((response : any) => {
-    console.log(response);
+    let data: any = []
+
     return Promise.resolve(response)
 });
 
