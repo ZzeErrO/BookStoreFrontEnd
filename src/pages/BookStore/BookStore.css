@@ -97,7 +97,6 @@ position: relative;
     display: flex;
     justify-content: center;
     position: absolute;
-    border-radius: 10px;
     width: 80%;
     background-color: white;
     padding: 10px;

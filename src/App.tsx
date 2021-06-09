@@ -9,18 +9,31 @@ import Cart from './pages/Cart/Cart';
 import WishList from './pages/WishList/WishList';
 import NOTFOUND from './components/NOTFOUND/Notfound';
 import OrderSuccess from './pages/OrderSuccessFul/OrderSuccess';
+import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute';
 
 function App() {
+
+  const [isAuthenticated, setIsAuthenticated] = React.useState(false);
+
+    const login = () => {
+        setIsAuthenticated(true);
+    };
+
+    const logout = () => {
+        setIsAuthenticated(false);
+    };
 
   return (
 
     <BrowserRouter>
     <Switch>
       <Route exact path= "/loginOrSignUp" component={SignInSignUp} />
-      <Route exact path= "/bookStore" component={BookStore} />
-      <Route exact path= "/cart" component={Cart} />
-      <Route exact path= "/wishlist" component={WishList} />
-      <Route exact path= "/success" component={OrderSuccess} />
+
+      <ProtectedRoute path= "/bookStore" component={BookStore} />
+      <ProtectedRoute path= "/cart" component={Cart} />
+      <ProtectedRoute path= "/wishlist" component={WishList} />
+      <ProtectedRoute path= "/success" component={OrderSuccess} />
+
       <Route path="*" component={NOTFOUND} />
     </Switch>
   </BrowserRouter>
