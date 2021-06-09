@@ -281,6 +281,7 @@ export default class Cart extends Component<IProps, IState> {
                                 <div></div>
 
                                 :
+                                
                                 <div className="PlaceOrder">
                                     <Button className="buttonsize" onClick={this.openDetailsforCustomer} size="small" color="primary" variant="contained">
                                         Place Order

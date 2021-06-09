@@ -80,11 +80,12 @@ export default class BookStore extends Component<IProps, IState> {
 
     GetData = () => {
         axios_service.Getdata().then((result) => {
-            this.setState({notes : result.data.books.map((obj : object)=> ( obj = { ...obj, active: false } ))});
+            this.setState({notes : result.data.books.map((obj : object)=> ( obj = { ...obj, active: false, isdescription : false, description : "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus estundefined" } ))});
             console.log(this.state.notes);
         }).catch((ex) => {
             console.log(ex);
         })
+
     }
 
     GetCart = () => {
@@ -200,10 +201,11 @@ export default class BookStore extends Component<IProps, IState> {
                                             <div className="img">
                                                 {value.isdescription
                                                     ?
-                                                    <div>
+                                                    <div className = "MainDescription">
                                                     <img id = "image2" src={book1} alt="Book" onMouseLeave={() => this.descriptionclose(value.id, index)}/>
-                                                    <div>
-                                                        {value.description}
+                                                    <div className = "Description">
+                                                        <div><h3>Book Details</h3></div>
+                                                        <div>{value.description}</div>
                                                     </div>
                                                     </div>
                                                     :

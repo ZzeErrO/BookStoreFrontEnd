@@ -39,6 +39,20 @@ opacity: 1;
 padding-left: 16px;
 }
 
+.MainDescription{
+    position: relative;
+}
+
+.Description{
+    position: absolute;
+    width: 300px;
+    padding: 15px;
+    font-size: 10px;
+    border-radius: 10px;
+    background-color: white;
+    z-index: 1;
+    right: 0%;
+}
 
 .img{
     background: #F5F5F5 0% 0% no-repeat padding-box ;
@@ -62,13 +76,12 @@ justify-content: center;
 
 .img2{
     background: #F5F5F5 0% 0% no-repeat padding-box ;
-    top: 145px;
-left: 171px;
 width: 235px;
 height: 153px;
 display: flex;
 justify-content: center;
 align-items: center;
+position: relative;
 }
 
 
@@ -85,8 +98,10 @@ align-items: center;
     justify-content: center;
     position: absolute;
     border-radius: 10px;
-    width: 200px;
+    width: 80%;
     background-color: white;
+    padding: 10px;
+    opacity: 0.8;
 }
 
 .paper{

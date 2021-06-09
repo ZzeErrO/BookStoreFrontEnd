@@ -6,7 +6,7 @@ axios.interceptors.request.use((request : any) => {
 });
 
 axios.interceptors.response.use((response : any) => {
-
+    
     return Promise.resolve(response)
 });
 
