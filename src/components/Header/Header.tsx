@@ -98,19 +98,31 @@ export default class Header extends Component<IProps, IState> {
         this.setState({ openDropDown: false });
     }
 
-    closedropdown2 = () => {
-        this.setState({ openDropDown2: false });
-    }
-
     search =(e: any) => {
         console.log(e.target.value);
         this.setState({ search : e.target.value });
         this.state.books.forEach((element : any) => {
-            if (e.target.value === element.bookName) {
-                this.setState({ openDropDown2: true });
-                this.setState({ searchbook : element.bookName });
-                console.log(element.bookName)
+            let array : any = element.bookName.split("");
+            for (let index = 1; index < array.length; index++) {
+                let arrayslice : any = array.slice(0, index);
+                console.log(e.target.value)
+                let string : any = arrayslice.join("");
+                console.log(string)
+                console.log(e.target.value === string)
+                if (e.target.value === string) {
+                    this.setState({ openDropDown2: true });
+                    this.setState({ searchbook : element.bookName });
+                    
+                }
+                
+                
             }
+
+            if (e.target.value === "") {
+                this.setState({ openDropDown2: false });
+                
+            }
+
         });
     }
 
@@ -135,13 +147,22 @@ export default class Header extends Component<IProps, IState> {
 
                         <div>
 
+                        { this.state.openDropDown2 
+                        
+                        ?
+                        <div>
                         <InputBase
+                        className = "search2"
                         onChange = {e => this.search(e)}
                         placeholder="Search"
                         inputProps={{ 'aria-label': 'search' }}
                         />
-                        <div>
-                            <Menu
+
+                        <div className="menulist3">
+
+                            {this.state.searchbook}
+
+                            {/* <Menu
                                 id="simple-menu"
                                 keepMounted
                                 open={this.state.openDropDown2}
@@ -149,8 +170,21 @@ export default class Header extends Component<IProps, IState> {
                                 className="menulist2"
                             >
                                 <MenuItem onClick={this.closedropdown2}>{this.state.searchbook}</MenuItem>
-                            </Menu>
+                            </Menu> */}
+
                         </div>
+                        </div>
+
+                        :
+
+                        <InputBase
+                        className = "search2"
+                        onChange = {e => this.search(e)}
+                        placeholder="Search"
+                        inputProps={{ 'aria-label': 'search' }}
+                        />
+
+                        }
 
                         </div>
 

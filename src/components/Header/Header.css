@@ -54,6 +54,19 @@ opacity: 1;
     position: absolute;
 }
 
+.search2{
+
+}
+
+.menulist3{
+    background-color: white;
+    padding: 5px;
+    border-radius: 5px;
+    width: 490px;
+    margin-left: -18px;
+    margin-top: 4px;
+}
+
 .menulist .MuiPaper-root.MuiMenu-paper.MuiPopover-paper.MuiPaper-elevation8.MuiPaper-rounded{
     top: 10% !important;
      left: 72% !important;
