@@ -7,21 +7,12 @@ import SignInSignUp from './pages/SignInSignUp/SignInAndSignUp';
 import BookStore from './pages/BookStore/BookStore';
 import Cart from './pages/Cart/Cart';
 import WishList from './pages/WishList/WishList';
+import Search from './pages/Search/Search';
 import NOTFOUND from './components/NOTFOUND/Notfound';
 import OrderSuccess from './pages/OrderSuccessFul/OrderSuccess';
 import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute';
 
 function App() {
-
-  const [isAuthenticated, setIsAuthenticated] = React.useState(false);
-
-    const login = () => {
-        setIsAuthenticated(true);
-    };
-
-    const logout = () => {
-        setIsAuthenticated(false);
-    };
 
   return (
 
@@ -33,6 +24,7 @@ function App() {
       <ProtectedRoute path= "/cart" component={Cart} />
       <ProtectedRoute path= "/wishlist" component={WishList} />
       <ProtectedRoute path= "/success" component={OrderSuccess} />
+      <ProtectedRoute path= "/search" component={Search} />
 
       <Route path="*" component={NOTFOUND} />
     </Switch>

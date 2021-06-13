@@ -16,6 +16,10 @@ import TextField from '@material-ui/core/TextField';
 import Checkbox from '@material-ui/core/Checkbox';
 import FormGroup from '@material-ui/core/FormGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
+import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
+
+import AddBoxRoundedIcon from '@material-ui/icons/AddBoxRounded';
+import IndeterminateCheckBoxRoundedIcon from '@material-ui/icons/IndeterminateCheckBoxRounded';
 
 import { Redirect } from "react-router-dom";
 
@@ -94,20 +98,44 @@ export default class Cart extends Component<IProps, IState> {
 
     }
 
-    change0 = (e: any, value: any, index: any) => {
+    change00 = (e: any, value: any, index: any) => {
+
+        console.log(e);
+
+        if(e > 1){
+        e -= 1
+        }else
+        {e = 1}
+        
+        console.log(e);
+
+        console.log(index);
+
+        let newArray = [...this.state.notes]
+
+        newArray[index] = { ...newArray[index], quantity: e }
+
+        console.log(newArray[index]);
+
+        this.setState({ notes: newArray });
+
+    }
+
+    change0 = (e: any, value: any, index: number) => {
 
         console.log(e);
         e += 1
         console.log(e);
-        let findIndex = this.state.notes.findIndex((element: any) => element.id == value);
 
-        console.log(findIndex);
+        console.log(index);
 
         let newArray = [...this.state.notes]
 
-        newArray[findIndex] = { ...newArray[findIndex], quantity: e }
+        console.log(newArray[index]);
 
-        console.log(newArray[findIndex]);
+        newArray[index] = { ...newArray[index], quantity: e }
+
+        console.log(newArray[index]);
 
         this.setState({ notes: newArray });
 
@@ -250,7 +278,7 @@ export default class Cart extends Component<IProps, IState> {
                     <div className="Cart">
                         <div className="heading">My Cart</div>
 
-                        {this.state.notes.slice(0).reverse().map((value: any, index: any) =>
+                        {this.state.notes.map((value: any, index: any) =>
 
                             <div key={value.id} className="cartitems">
 
@@ -260,8 +288,13 @@ export default class Cart extends Component<IProps, IState> {
 
                                     <div>{value.bookName}</div>
                                     <div className="price">Rs.{value.price}</div>
-                                    <label>Quantity :</label>
-                                    <input onChange={e => this.change0(value.quantity, value.id, index)} type="number" id="quantity" name="quantity" min="1" max="99" ></input>
+
+                                    <div className = "Quantity10">
+                                    <IndeterminateCheckBoxRoundedIcon onClick={e => this.change00(value.quantity, value.id, index)}/>
+                                    <input type="text" value = {value.quantity} name="quantity"/>
+                                    <AddBoxRoundedIcon onClick={e => this.change0(value.quantity, value.id, index)}/>
+                                    </div>
+
                                     <DeleteOutlineOutlinedIcon className = "DeleteIcon" onClick = {() => this.delete(value.bookId)}/>
 
                                 </div>
@@ -316,7 +349,7 @@ export default class Cart extends Component<IProps, IState> {
                                         <TextField
                                             error={this.state.NumberError}
                                             size="small"
-                                            label="Phone Number"
+                                            label="Number"
                                             type="Number"
                                             name="Number"
                                             variant="outlined"
@@ -433,7 +466,7 @@ export default class Cart extends Component<IProps, IState> {
                                         :
 
                                         <div className="PlaceOrder">
-                                            <Button className="buttonsize" onClick={this.openDetailsforSummary} size="small" color="primary" variant="contained">
+                                            <Button className="buttonsize3" onClick={this.openDetailsforSummary} size="small" color="primary" variant="contained">
                                                 Continue
                                             </Button>
                                         </div>

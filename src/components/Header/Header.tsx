@@ -66,14 +66,19 @@ export default class Header extends Component<IProps, IState> {
         }).catch((ex) => {
             console.log(ex);
         })
+
     }
 
     GetCart = () => {
         axios_service.Getcart().then((result) => {
+
+            console.log(result.data.book[0].email);
             
             this.setState({ notes: result.data.book });
             
-            console.log(this.state.notes.bookName[0]);
+            console.log(this.state.notes.book[0]);
+
+            console.log(this.state.notes);
         }).catch(() => {
 
         })
@@ -98,32 +103,14 @@ export default class Header extends Component<IProps, IState> {
         this.setState({ openDropDown: false });
     }
 
+    LogOut = () => {
+        localStorage.removeItem("id");
+        this.setState({ redirect: "/loginOrSignUp" });
+    }
+
     search =(e: any) => {
-        console.log(e.target.value);
-        this.setState({ search : e.target.value });
-        this.state.books.forEach((element : any) => {
-            let array : any = element.bookName.split("");
-            for (let index = 1; index < array.length; index++) {
-                let arrayslice : any = array.slice(0, index);
-                console.log(e.target.value)
-                let string : any = arrayslice.join("");
-                console.log(string)
-                console.log(e.target.value === string)
-                if (e.target.value === string) {
-                    this.setState({ openDropDown2: true });
-                    this.setState({ searchbook : element.bookName });
-                    
-                }
-                
-                
-            }
 
-            if (e.target.value === "") {
-                this.setState({ openDropDown2: false });
-                
-            }
-
-        });
+        this.setState({ redirect: "/search" });
     }
 
     render() {
@@ -207,9 +194,9 @@ export default class Header extends Component<IProps, IState> {
                                     onClose={this.closedropdown}
                                     className="menulist"
                                     >
-                                    <div className = "insidemenu2"><strong>Hello Prashik!!</strong></div>
+                                    <div className = "insidemenu2"><strong>Hello {this.state.notes.book}</strong></div>
                                     <MenuItem onClick={this.toWishList}>My WishList</MenuItem>
-                                    <Button className = "buttonsize2" size = "small" variant="contained">
+                                    <Button className = "buttonsize2" onClick = {this.LogOut} size = "small" variant="contained">
                                                     Logout
                                     </Button>
 

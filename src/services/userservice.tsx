@@ -18,8 +18,8 @@ class Userservice {
     }
 
     Login = (data : any) => {
-        console.log(`${baseUrl}Users/Login`, data, configbook);
-        return axiosservice.postMethod(`${baseUrl}Users/Login`, data, configbook)
+        console.log(`${baseUrl}Users/Login`, data, false);
+        return axiosservice.postMethod(`${baseUrl}Users/Login`, data, false)
     }
 
     Getdata = () => {
