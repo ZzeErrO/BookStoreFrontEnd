@@ -120,6 +120,7 @@ export default class SignInAndSignUp extends Component<IProps,IState> {
             console.log(result);
             this.setState({ open: true });
             localStorage.setItem('id',result.data.token);
+            localStorage.setItem('email',result.data.email);
             setTimeout(() => this.setState({ redirect: "/bookStore" }), 4000)
     
           }).catch(() => {

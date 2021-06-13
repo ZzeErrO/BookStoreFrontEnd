@@ -105,6 +105,7 @@ export default class Header extends Component<IProps, IState> {
 
     LogOut = () => {
         localStorage.removeItem("id");
+        localStorage.removeItem("email");
         this.setState({ redirect: "/loginOrSignUp" });
     }
 
@@ -194,7 +195,7 @@ export default class Header extends Component<IProps, IState> {
                                     onClose={this.closedropdown}
                                     className="menulist"
                                     >
-                                    <div className = "insidemenu2"><strong>Hello {this.state.notes.book}</strong></div>
+                                    <div className = "insidemenu2"><strong>Hello {localStorage.getItem('email')}</strong></div>
                                     <MenuItem onClick={this.toWishList}>My WishList</MenuItem>
                                     <Button className = "buttonsize2" onClick = {this.LogOut} size = "small" variant="contained">
                                                     Logout
